@@ -5,7 +5,5 @@
 # 알고리즘
 
 # Web
-  - [django](https://github.com/jangjichang/Today-I-Learn/tree/master/django)
-  - [이론](
 
-# 
+# 분류없음
