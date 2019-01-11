@@ -18,10 +18,10 @@ C:\Users\jcjang\AppData\Local\Android\Sdk\platform-tools
 ```
 >>adb devices
 
-List of devices attached<br/>
-emulator-5554  device<br/>
-emulator-5556  device<br/>
-emulator-5558  device<br/>
+List of devices attached
+emulator-5554  device
+emulator-5556  device
+emulator-5558  device
 ```
 
 2. ```adb shell```
