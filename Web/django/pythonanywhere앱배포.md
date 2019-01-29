@@ -1,6 +1,6 @@
 앱 첫 배포 성공!
 
-![pythonanywhere](image/pythonanywhere_deploy.png)
+![pythonanywhere](../../image/pythonanywhere_deploy.png)
 
 앱 배포를 위한 설정
 
