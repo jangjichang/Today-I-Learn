@@ -1,20 +1,27 @@
-m = 4   # 높이
-n = 5   # 너비
-board = ["CCBDE",
-         "AAADE",
-         "AAABF",
-         "CCBBF"]
+# m = 4   # 높이
+# n = 5   # 너비
+# board = ["CCBDE",
+#          "AAADE",
+#          "AAABF",
+#          "CCBBF"]
+m = 6
+n = 6
+board = ["TTTANT",
+         "RRFACC",
+         "RRRFCC",
+         "TRRRAA",
+         "TTMMMF",
+         "TMMTTJ"]
 
-
-def board2table(m, n, borad):
-    t = [[0 for x in range(n)] for y in range(m)]
+def board2table(m, n, board):
+    t = [[0 for x in range(m)] for y in range(n)]
     for i in range(m):
         for j in range(n):
-            t[i][j] = board[i][j]
+            t[j][i] = board[i][j]
     return t
 
 
-def crashable(m, n, table):
+def crashable(n, m, table):
     sameblock = list()
     for i in range(m - 1):
         for j in range(n - 1):
@@ -56,8 +63,12 @@ def sol(m, n, t):
 
 
 def solution(m, n, board):
+    m = m
+    n = n
+    board = board
     t = board2table(m, n, board)
     answer = sol(m, n, t)
     return answer
 
-print(solution(m,n,board))
+
+print(solution(m, n, board))
