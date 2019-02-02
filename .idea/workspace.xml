@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="84f68db2-998e-49ea-aa16-45c63a097cbb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20190131.md" beforeDir="false" afterPath="$PROJECT_DIR$/20190131.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/django/DJango의 웹 서버 연동 원리.md" beforeDir="false" afterPath="$PROJECT_DIR$/Web/django/Django의 웹 서버 연동 원리.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/20190202.md" beforeDir="false" afterPath="$PROJECT_DIR$/20190202.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,13 +15,14 @@
     <session id="1963478702">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.10" value="2" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.14" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -43,14 +43,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="914" />
-          <entry key="md" value="5469" />
+          <entry key="md" value="5521" />
           <entry key="py" value="2771" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="BuildoutCfg" value="6" />
-          <entry key="Markdown" value="5463" />
+          <entry key="Markdown" value="5515" />
           <entry key="Python" value="3685" />
         </counts>
       </usages-collector>
@@ -86,20 +86,8 @@
         <entry file="file://$PROJECT_DIR$/20190131.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="395">
-                <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/20190202.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="133">
-                <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="17" />
+              <first_editor relative-caret-position="836">
+                <caret line="44" selection-start-line="44" selection-end-line="44" />
               </first_editor>
               <second_editor />
             </state>
@@ -107,11 +95,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/20190202.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="594">
+                <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Book/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="133">
-                <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+              <first_editor relative-caret-position="198">
+                <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
               </first_editor>
               <second_editor />
             </state>
@@ -191,15 +191,16 @@
         <option value="$PROJECT_DIR$/20190130.md" />
         <option value="$PROJECT_DIR$/Web/django/DJango의 웹 서버 연동 원리.md" />
         <option value="$PROJECT_DIR$/20190131.md" />
-        <option value="$PROJECT_DIR$/20190202.md" />
         <option value="$PROJECT_DIR$/Book/README.md" />
+        <option value="$PROJECT_DIR$/20190202.md" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="991" />
-    <option name="width" value="938" />
-    <option name="height" value="1088" />
+    <option name="x" value="1974" />
+    <option name="y" value="-8" />
+    <option name="width" value="1874" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -339,10 +340,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="56" y="-7" width="1487" height="878" extended-state="6" />
+    <frame x="1974" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994797" visible="true" weight="0.17103449" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994797" visible="true" weight="0.17102396" />
       <window_info id="Structure" order="1" sideWeight="0.5005203" side_tool="true" weight="0.17755991" />
       <window_info id="Favorites" order="2" sideWeight="0.5005203" side_tool="true" weight="0.17755991" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -683,6 +684,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/20190131.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="836">
+            <caret line="44" selection-start-line="44" selection-end-line="44" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Android/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Algorithm/kakao5.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -715,20 +734,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/20190131.md">
+    <entry file="file://$PROJECT_DIR$/Book/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="395">
-            <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+          <first_editor relative-caret-position="198">
+            <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
           </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Android/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
           <second_editor />
         </state>
       </provider>
@@ -736,18 +747,8 @@
     <entry file="file://$PROJECT_DIR$/20190202.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="133">
-            <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="17" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Book/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="133">
-            <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+          <first_editor relative-caret-position="594">
+            <caret line="33" column="2" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
           </first_editor>
           <second_editor />
         </state>
