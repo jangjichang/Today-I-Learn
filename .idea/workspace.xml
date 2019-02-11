@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84f68db2-998e-49ea-aa16-45c63a097cbb" name="Default Changelist" comment="" />
+    <list default="true" id="84f68db2-998e-49ea-aa16-45c63a097cbb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Web/django/파이썬웹프로그래밍실전편/1장.md" beforeDir="false" afterPath="$PROJECT_DIR$/Web/django/파이썬웹프로그래밍실전편/1장.md" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,14 +44,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="914" />
-          <entry key="md" value="5972" />
+          <entry key="md" value="10418" />
           <entry key="py" value="2957" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="BuildoutCfg" value="6" />
-          <entry key="Markdown" value="5966" />
+          <entry key="Markdown" value="10412" />
           <entry key="Python" value="3871" />
         </counts>
       </usages-collector>
@@ -109,8 +111,8 @@
         <entry file="file://$PROJECT_DIR$/Web/django/파이썬웹프로그래밍실전편/1장.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="38">
-                <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+              <first_editor relative-caret-position="180">
+                <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
               </first_editor>
               <second_editor />
             </state>
@@ -792,8 +794,8 @@
     <entry file="file://$PROJECT_DIR$/Web/django/파이썬웹프로그래밍실전편/1장.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="38">
-            <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <first_editor relative-caret-position="180">
+            <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
           </first_editor>
           <second_editor />
         </state>
