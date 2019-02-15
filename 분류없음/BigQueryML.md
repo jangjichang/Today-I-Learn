@@ -6,22 +6,24 @@ BigQuery ML을 사용하면 SQL 쿼리를 사용하여 BigQuery에서 기계 학
 목표는 SQL 실무자가 기존 도구를 사용하여 모델을 작성하고 데이터 이동의 필요성을 제거하여 개발 속도를
 높일 수 있게함으로써 기계 학습을 민주화(?)하는 것입니다.
 
-- 만드는 것
+- 만드는 것:
 [sample Analaytics 360 dataset](https://support.google.com/analytics/answer/3437719)을
 사용하여 방문자가 거래를 할 것인지 여부를 예측하는 모델을 만들 수 있습니다.
 
-- 배우는 것
+- 배우는 것:
 BigQuery에서 기계 학습 모델을 작성, 평가 및 사용하는 방법
 
 # 2. 설치 및 요구사항
 
-이 단계는 생략함
+이 단계는 생략함 [링크](https://codelabs.developers.google.com/codelabs/bqml-intro/index.html#1)
 
 다만, 계정을 만들면 사용할 수 있는 데이터 셋이 없지만, BigQuery에서 사용할 수 있는 수많은 공개 데이터 셋이 있다.
 
-# 3. 데이터 집합 만들기
+# 3. 데이터 셋 만들기
 
-이 단계는 생략함
+뒤에 나올 sql 예제에서 테이블명을 입력하므로 Dataset ID는 bqml_codelab으로 정하는 것을 권장함.
+
+이 단계는 생략함 [링크](https://codelabs.developers.google.com/codelabs/bqml-intro/index.html#2)
 
 # 4. 모델 만들기
 
@@ -45,15 +47,13 @@ WHERE
 LIMIT 100000;
 ```
 
-조건식 구문
-- IF(cond, true_result, else_result)
-- IFNULL(expr, null_result)
-
-방문자의 기기 운영체제, 모바일 기기인지의 여부, 방문자 국가 및 페이지 뷰 수를 거래가 이루어 졌는지 여부에 대한 기준으로 사용합니다.
+SQL문 각 절에 대해 알아보겠습니다.
 
 >> CREATE OR REPLACE MODEL 'bqml_codelab.sample_model'
  
 "codelab"은 데이터 집합의 이름이고 "sample_model"은 모델의 이름입니다.
+
+---
 
 >> OPTIONS(model_type='logistic_reg') AS
 
@@ -65,11 +65,16 @@ model_type OPTIONS은 필수입니다.
 [링크](https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-create#model_name)
 에서 확인 가능합니다.
 
->> WHERE _TABLE_SUFFIX BETWEEN '20160801' AND '20170631'
+---
 
-와일드 카드 테이블을 사용해야 하는 경우는 다음과 같습니다. 자세한 와일드 카드 설정은
-[링크](https://cloud.google.com/bigquery/docs/querying-wildcard-tables?hl=ko)
-에서 확인 가능합니다.
+
+조건식 구문
+- IF(cond, true_result, else_result)
+- IFNULL(expr, null_result)
+
+방문자의 기기 운영체제, 모바일 기기인지의 여부, 방문자 국가 및 페이지 뷰 수를 거래가 이루어 졌는지 여부에 대한 기준으로 사용합니다.
+
+---
 
 FROM 절에 20160801부터 20170631 까지의 테이블의 이름을 모두 지정해야 하는 경우 다음과 같아질겁니다.
 
@@ -93,7 +98,6 @@ FROM (
         `bigquery-public-data.google_analytics_sample.ga_sessions_20160804` UNION ALL
         
         ...
-        
 ```
 
 하지만 와일드 카드 테이블을 사용하면 훨씬 간결해집니다.
@@ -104,12 +108,22 @@ WHERE
     _TABLE_SUFFIX BETWEEN '20160801' AND '20170631'
 ```
 
+>> WHERE _TABLE_SUFFIX BETWEEN '20160801' AND '20170631'
+
+와일드 카드 테이블을 사용해야 하는 경우는 다음과 같습니다. 자세한 와일드 카드 설정은
+[링크](https://cloud.google.com/bigquery/docs/querying-wildcard-tables?hl=ko)
+에서 확인 가능합니다.
+
+---
+
 마지막으로 시간을 줄이기 위해 100000개의 데이터로 제한합니다.
 ```
 LIMIT 100000;
 ```
 
-이러한 쿼리를 실행하면 모델이 만들어진다. 모델 세부정보, 모델 통계, 모델 스키마로 모델에 대한 정보를 확인할 수 있다.
+---
+
+이러한 쿼리를 실행하면 모델이 만들어집니다. 모델 세부정보, 모델 통계, 모델 스키마로 모델에 대한 정보를 확인할 수 있습니다.
 
 **모델 세부 정보**
 ![모델 세부 정보](../image/bqml_modeldetail.PNG)
