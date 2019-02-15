@@ -51,7 +51,7 @@ SQL문 각 절에 대해 알아보겠습니다.
 
 >> CREATE OR REPLACE MODEL 'bqml_codelab.sample_model'
  
-"codelab"은 데이터 집합의 이름이고 "sample_model"은 모델의 이름입니다.
+"bqml_codelab"은 데이터 집합의 이름이고 "sample_model"은 모델의 이름입니다.
 
 ---
 
