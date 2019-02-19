@@ -193,3 +193,202 @@ GROUP BY country
 ORDER BY total_predicted_purchases DESC
 LIMIT 10;
 ```
+
+5번 예제와 크게 다른점은
+>> FROM
+>>
+>> ml.PREDICT(MODEL `bqml_codelab.sample_model`, (
+
+이 부분이다. 모델 평가를 위해서는 ml.EVALUATE 함수를 사용하고 모델로 예측하기 위해서는 ml.PREDICT 함수를
+사용한다.
+
+이 SQL은 구체적으로 말하자면, 각 국가의 구매 실적의 합을 확인하려고하는 것이다.
+
+상위 10개의 국가만 보기위해
+>> LIMIT 10;
+
+을 이용하였다.
+
+예측 결과는 다음과 같다.
+
+| 행 | country       | total_predicted_purchases |
+|----|---------------|---------------------------|
+| 1  | United States | 126                       |
+| 2  | Taiwan        | 5                         |
+| 3  | Canada        | 4                         |
+| 4  | Turkey        | 2                         |
+| 5  | Japan         | 2                         |
+| 6  | India         | 2                         |
+| 7  | Germany       | 1                         |
+| 8  | Serbia        | 1                         |
+| 9  | Brazil        | 1                         |
+| 10 | El Salvador   | 1                         |
+
+사용자별 구매 예측하기
+```buildoutcfg
+#standardSQL
+SELECT
+  fullVisitorId,
+  SUM(predicted_label) as total_predicted_purchases
+FROM
+  ml.PREDICT(MODEL `bqml_codelab.sample_model`, (
+SELECT
+  IFNULL(device.operatingSystem, "") AS os,
+  device.isMobile AS is_mobile,
+  IFNULL(totals.pageviews, 0) AS pageviews,
+  IFNULL(geoNetwork.country, "") AS country,
+  fullVisitorId
+FROM
+  `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+WHERE
+  _TABLE_SUFFIX BETWEEN '20170701' AND '20170801'))
+GROUP BY fullVisitorId
+ORDER BY total_predicted_purchases DESC
+LIMIT 10;
+```
+
+예측 결과는 다음과 같다.
+
+| 행 | fullVisitorId       | total_predicted_purchases |
+|----|---------------------|---------------------------|
+| 1  | 9417857471295131045 | 3                         |
+| 2  | 1280993661204347450 | 2                         |
+| 3  | 7420300501523012460 | 2                         |
+| 4  | 2969418676126258798 | 2                         |
+| 5  | 806992249032686650  | 2                         |
+| 6  | 112288330928895942  | 2                         |
+| 7  | 0376394056092189113 | 2                         |
+| 8  | 8388931032955052746 | 2                         |
+| 9  | 057693500927581077  | 2                         |
+| 10 | 9613834008182881588 | 1                         |
+
+
+# 7. 마무리
+
+이것으로 BQML 시작하기를 마친다.
+
+BQML의 목표는 SQL 실무자가 기존 도구를 사용해서 모델 생성부터 예측까지 가능하게 하는 것인데, 이 목표에 정말
+부합하다고 생각한다. bigquery web UI에서 SQL문을 통해 결과를 도출하는것 까지 가능하다.
+
+bigquery에서 사용하는 테이블을 보고 싶다면 여기 [기본 테이블 가져오기](https://cloud.google.com/bigquery/docs/datasets#dataset-acl)
+를 참고해서 테이블을 가져올 수 있다.
+
+다른 bigquery 예제나 공부한 내용을 계속 업데이트할 예정이다.
+
+# 예제
+
+'bigquery-public-data' table에서 fullVisitorId, transactionRevenue, date 가져오기
+
+## SQL 문
+```buildoutcfg
+SELECT 
+  fullVisitorId,
+  CONCAT(SUBSTR(date,1,4),'-',SUBSTR(date,5,2),'-',SUBSTR(date,7,2)) AS date,
+  sum(totals.transactionRevenue) as transactionRevenue
+FROM
+  `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+WHERE
+  (_TABLE_SUFFIX >= '20170201' AND _TABLE_SUFFIX <= '20170801') AND
+  totals.transactions IS NOT NULL
+  GROUP BY 1,2
+  ORDER BY date desc
+```
+
+## 결과
+
+| 행 | fullVisitorId       | date       | transactionRevenue |
+|----|---------------------|------------|--------------------|
+| 1  | 5835011534221003810 | 2017-08-01 | 13290000           |
+| 2  | 1311003026247678016 | 2017-08-01 | 33500000           |
+| 3  | 8719058463049309640 | 2017-08-01 | 313380000          |
+| 4  | 7420300501523012460 | 2017-08-01 | 570110000          |
+| 5  | 8730493892218660083 | 2017-08-01 | 45670000           |
+| 6  | 024507252193437459  | 2017-08-01 | 11960000           |
+| 7  | 654736404761929369  | 2017-08-01 | 26000000           |
+| 8  | 9591202457292182670 | 2017-08-01 | 28790000           |
+| 9  | 351681171177883933  | 2017-08-01 | 48000000           |
+| 10 | 1996186587769697436 | 2017-08-01 | 43640000           |
+| 11 | 7771285007340524144 | 2017-08-01 | 27430000           |
+
+## 설명
+### concat
+
+>> CONCAT ( string_value1, string_value2 [, string_valueN ] )
+
+인수
+- string_value: 다른 값에 연결할 문자열임
+
+반환 형식
+- string_value
+
+예시
+>> SELECT CONCAT ( 'Happy ', 'Birthday ', 11, '/', '25' ) AS Result;
+
+결과
+```
+Result  
+-------------------------  
+Happy Birthday 11/25  
+  
+(1 row(s) affected)
+```
+
+---
+### substr
+
+>> SELECT SUBSTR("SQL Tutorial", 5, 3) AS ExtractString;
+
+인수
+- string: 필수값, 추출할 문자열 값
+- start: 필수값, 시작하는 위치임 양수 음수 가능 음수일 경우 문자열의 끝에서부터 추출시작
+- length: 옵션값, 생략할 경우 start부터 전체 문자열 출력
+
+반환 형식
+- string
+
+예시
+>> SELECT SUBSTR(CustomerName, 2, 5) AS ExtractString, CustomerName AS OriginalString
+>> FROM Customers;
+
+결과
+
+| ExtractString | OriginalString                     |
+|---------------|------------------------------------|
+| lfred         | Alfreds Futterkiste                |
+| na Tr         | Ana Trujillo Emparedados y helados |
+| ntoni         | Antonio Moreno Taquería            |
+| round         | Around the Horn                    |
+| erglu         | Berglunds snabbköp                 |
+| lauer         | Blauer See Delikatessen            |
+| londe         | Blondel père et fils               |
+| ólido         | Bólido Comidas preparadas          |
+| on ap         | Bon app'                           |
+| ottom         | Bottom-Dollar Marketse             |
+
+---
+
+방문객의 총 거래 수익 예측하기
+
+## 1. 모델 만들기
+
+```buildoutcfg
+create or replace model `bqml_codelab.revenue_predict_model`
+options(model_type='linear_reg') as
+select
+  ifnull(totals.totalTransactionRevenue	, 0) AS label,
+  ifnull(totals.transactions, 0) as transaction_count,
+  device.isMobile as is_mobile,
+  ifnull(geoNetwork.country, "") as country,
+  ifnull(totals.pageviews, 0) as pageviews,
+  ifnull(totals.timeOnScreen, 0) as timeOnScreen
+from
+  `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+where
+  _table_suffix between '20160801' and '20170631'
+limit 100000; 
+```
+
+설명
+- 선형 회귀 모델로 방문객의 총 거래 수익을 예측하는 모델을 생성함
+
+
