@@ -255,6 +255,12 @@ LIMIT 10;
 
 - 다른 bigquery 예제나 공부한 내용을 계속 업데이트할 예정이다.
 
+# 참고 링크
+
+- [Bigquery docs](https://cloud.google.com/bigquery/docs/quickstarts?hl=ko)
+- [Getting Started with BigQuery ML](https://codelabs.developers.google.com/codelabs/bqml-intro/index.html?index=../../index#0)
+- [모든 Bigquery ML 문서](https://cloud.google.com/bigquery/docs/bigqueryml?hl=ko)
+
 # 예제
 
 ## 'bigquery-public-data' table에서 fullVisitorId, transactionRevenue, date 가져오기
