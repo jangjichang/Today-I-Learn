@@ -14,22 +14,16 @@ BigQuery ML을 사용하면 SQL 쿼리를 사용하여 BigQuery에서 기계 학
 BigQuery에서 기계 학습 모델을 작성, 평가 및 사용하는 방법
 
 # 2. 설치 및 요구사항
-
-이 단계는 생략함 [링크](https://codelabs.developers.google.com/codelabs/bqml-intro/index.html#1)
-
-다만, 계정을 만들면 사용할 수 있는 데이터 셋이 없지만, BigQuery에서 사용할 수 있는 수많은 공개 데이터 셋이 있다.
+- 이 단계는 생략함 [링크](https://codelabs.developers.google.com/codelabs/bqml-intro/index.html#1)
+- 다만, 계정을 만들면 사용할 수 있는 데이터 셋이 없지만, BigQuery에서 사용할 수 있는 수많은 공개 데이터 셋이 있다.
 
 # 3. 데이터 셋 만들기
-
-뒤에 나올 sql 예제에서 테이블명을 입력하므로 Dataset ID는 bqml_codelab으로 정하는 것을 권장함.
-
-이 단계는 생략함 [링크](https://codelabs.developers.google.com/codelabs/bqml-intro/index.html#2)
+- 뒤에 나올 sql 예제에서 테이블명을 입력하므로 Dataset ID는 bqml_codelab으로 정하는 것을 권장함.
+- 이 단계는 생략함 [링크](https://codelabs.developers.google.com/codelabs/bqml-intro/index.html#2)
 
 # 4. 모델 만들기
-
-**Analytics 360의 로지스틱 회귀 분석**
-
-방문자가 거래를 할 것인지를 예측하는 모델을 만드는 방법은 다음과 같습니다.
+- **Analytics 360의 로지스틱 회귀 분석**
+- 방문자가 거래를 할 것인지를 예측하는 모델을 만드는 방법은 다음과 같습니다.
 ```buildoutcfg
 #standardSQL
 CREATE OR REPLACE MODEL `bqml_codelab.sample_model`
@@ -46,35 +40,24 @@ WHERE
     _TABLE_SUFFIX BETWEEN '20160801' AND '20170631'
 LIMIT 100000;
 ```
-
-SQL문 각 절에 대해 알아보겠습니다.
-
->> CREATE OR REPLACE MODEL 'bqml_codelab.sample_model'
+- SQL문 각 절에 대해 알아보겠습니다.
+```CREATE OR REPLACE MODEL 'bqml_codelab.sample_model'```
  
-"bqml_codelab"은 데이터 집합의 이름이고 "sample_model"은 모델의 이름입니다.
+- "bqml_codelab"은 데이터 집합의 이름이고 "sample_model"은 모델의 이름입니다.
 
----
-
->> OPTIONS(model_type='logistic_reg') AS
-
-model_type OPTIONS은 필수입니다.
-
-지정된 모델 유형은 binary logistic regression입니다.
-
-모델 유형은 linear_reg, logistic_reg 이렇게 두가지를 제공합니다. 자세한 옵션 설정은
+```OPTIONS(model_type='logistic_reg') AS```
+- model_type OPTIONS은 필수입니다.
+- 지정된 모델 유형은 binary logistic regression입니다.
+- 모델 유형은 linear_reg, logistic_reg 이렇게 두가지를 제공합니다. 자세한 옵션 설정은
 [링크](https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-create#model_name)
 에서 확인 가능합니다.
 
----
 
-
-조건식 구문
+- 조건식 구문
 - IF(cond, true_result, else_result)
 - IFNULL(expr, null_result)
 
-방문자의 기기 운영체제, 모바일 기기인지의 여부, 방문자 국가 및 페이지 뷰 수를 거래가 이루어 졌는지 여부에 대한 기준으로 사용합니다.
-
----
+- 방문자의 기기 운영체제, 모바일 기기인지의 여부, 방문자 국가 및 페이지 뷰 수를 거래가 이루어 졌는지 여부에 대한 기준으로 사용합니다.
 
 FROM 절에 20160801부터 20170631 까지의 테이블의 이름을 모두 지정해야 하는 경우 다음과 같아질겁니다.
 
