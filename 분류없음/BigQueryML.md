@@ -2,7 +2,7 @@
 
 # 1. 개요
 
-BigQuery ML을 사용하면 SQL 쿼리를 사용하여 BigQuery에서 기계 학습 모델을 만들고 실행할 수 있습니다.
+- BigQuery ML을 사용하면 SQL 쿼리를 사용하여 BigQuery에서 기계 학습 모델을 만들고 실행할 수 있습니다.
 목표는 SQL 실무자가 기존 도구를 사용하여 모델을 작성하고 데이터 이동의 필요성을 제거하여 개발 속도를
 높일 수 있게함으로써 기계 학습을 민주화(?)하는 것입니다.
 
@@ -58,8 +58,7 @@ LIMIT 100000;
 - IFNULL(expr, null_result)
 
 - 방문자의 기기 운영체제, 모바일 기기인지의 여부, 방문자 국가 및 페이지 뷰 수를 거래가 이루어 졌는지 여부에 대한 기준으로 사용합니다.
-
-FROM 절에 20160801부터 20170631 까지의 테이블의 이름을 모두 지정해야 하는 경우 다음과 같아질겁니다.
+- FROM 절에 20160801부터 20170631 까지의 테이블의 이름을 모두 지정해야 하는 경우 다음과 같아질겁니다.
 
 ```buildoutcfg
 FROM (
@@ -83,7 +82,7 @@ FROM (
         ...
 ```
 
-하지만 와일드 카드 테이블을 사용하면 훨씬 간결해집니다.
+- 하지만 와일드 카드 테이블을 사용하면 훨씬 간결해집니다.
 ```buildoutcfg
 FROM
     `bigquery-public-data.google_analytics_sample.ga_sessions_*`
@@ -91,30 +90,28 @@ WHERE
     _TABLE_SUFFIX BETWEEN '20160801' AND '20170631'
 ```
 
->> WHERE _TABLE_SUFFIX BETWEEN '20160801' AND '20170631'
+```WHERE _TABLE_SUFFIX BETWEEN '20160801' AND '20170631'```
 
-와일드 카드 테이블을 사용해야 하는 경우는 다음과 같습니다. 자세한 와일드 카드 설정은
+- 와일드 카드 테이블을 사용해야 하는 경우는 다음과 같습니다. 자세한 와일드 카드 설정은
 [링크](https://cloud.google.com/bigquery/docs/querying-wildcard-tables?hl=ko)
 에서 확인 가능합니다.
 
----
 
-마지막으로 시간을 줄이기 위해 100000개의 데이터로 제한합니다.
+- 마지막으로 시간을 줄이기 위해 100000개의 데이터로 제한합니다.
 ```
 LIMIT 100000;
 ```
 
----
 
-이러한 쿼리를 실행하면 모델이 만들어집니다. 모델 세부정보, 모델 통계, 모델 스키마로 모델에 대한 정보를 확인할 수 있습니다.
+- 이러한 쿼리를 실행하면 모델이 만들어집니다. 모델 세부정보, 모델 통계, 모델 스키마로 모델에 대한 정보를 확인할 수 있습니다.
 
-**모델 세부 정보**
+- **모델 세부 정보**
 ![모델 세부 정보](../image/bqml_modeldetail.PNG)
 
-**모델 통계**
+- **모델 통계**
 ![모델 통계](../image/bqml_modelstatistics.PNG)
 
-**모델 스키마**
+- **모델 스키마**
 ![모델 스키마](../image/bqml_modelschema.PNG)
 
 # 5. 모델 평가하기
@@ -137,7 +134,7 @@ WHERE
   _TABLE_SUFFIX BETWEEN '20170701' AND '20170801'));
 ```
 
-4번 모델 만들기에서는 테이블을 만들었다면 이번에는 평가하는 부분이다. ml.evaluate 함수를 사용하여 모델 통계를 평가합니다.
+- 4번 모델 만들기에서는 테이블을 만들었다면 이번에는 평가하는 부분이다. ml.evaluate 함수를 사용하여 모델 통계를 평가합니다.
 
 우리는 로지스틱 회귀 모형을 사용했으므로 출력 열은 다음과 같다.
 - precision
@@ -147,14 +144,14 @@ WHERE
 - log_loss
 - roc_auc
 
-**모델 평가 쿼리 결과**
+- **모델 평가 쿼리 결과**
 ![모델 평가](../image/bqml_modelevaluate.PNG)
 
 # 6. 모델 사용
 
-국가별 구매 예상하기
+## 국가별 구매 예상하기
 
-각국 방문객의 거래 건수를 예측하고 구매 수를 기준으로 상위 10개국을 선택합니다.
+- 각국 방문객의 거래 건수를 예측하고 구매 수를 기준으로 상위 10개국을 선택합니다.
 
 ```buildoutcfg
 #standardSQL
@@ -177,18 +174,17 @@ ORDER BY total_predicted_purchases DESC
 LIMIT 10;
 ```
 
-5번 예제와 크게 다른점은
->> FROM
->>
->> ml.PREDICT(MODEL `bqml_codelab.sample_model`, (
+- 5번 예제와 크게 다른점은
+```
+FROM
+ml.PREDICT(MODEL `bqml_codelab.sample_model`, (
+```
 
-이 부분이다. 모델 평가를 위해서는 ml.EVALUATE 함수를 사용하고 모델로 예측하기 위해서는 ml.PREDICT 함수를
-사용한다.
-
-이 SQL은 구체적으로 말하자면, 각 국가의 구매 실적의 합을 확인하려고하는 것이다.
-
+- 모델 평가를 위해서는 ml.EVALUATE 함수를 사용하고 모델로 예측하기 위해서는 ml.PREDICT 함수를
+사용한다. 이 SQL은 구체적으로 말하자면, 각 국가의 구매 실적의 합을 확인하려고하는 것이다.
 상위 10개의 국가만 보기위해
->> LIMIT 10;
+
+```LIMIT 10;```
 
 을 이용하였다.
 
@@ -207,7 +203,8 @@ LIMIT 10;
 | 9  | Brazil        | 1                         |
 | 10 | El Salvador   | 1                         |
 
-사용자별 구매 예측하기
+- 사용자별 구매 예측하기
+
 ```buildoutcfg
 #standardSQL
 SELECT
@@ -230,7 +227,7 @@ ORDER BY total_predicted_purchases DESC
 LIMIT 10;
 ```
 
-예측 결과는 다음과 같다.
+- 예측 결과는 다음과 같다.
 
 | 행 | fullVisitorId       | total_predicted_purchases |
 |----|---------------------|---------------------------|
@@ -248,19 +245,19 @@ LIMIT 10;
 
 # 7. 마무리
 
-이것으로 BQML 시작하기를 마친다.
+- 이것으로 BQML 시작하기를 마친다.
 
-BQML의 목표는 SQL 실무자가 기존 도구를 사용해서 모델 생성부터 예측까지 가능하게 하는 것인데, 이 목표에 정말
+- BQML의 목표는 SQL 실무자가 기존 도구를 사용해서 모델 생성부터 예측까지 가능하게 하는 것인데, 이 목표에 정말
 부합하다고 생각한다. bigquery web UI에서 SQL문을 통해 결과를 도출하는것 까지 가능하다.
 
-bigquery에서 사용하는 테이블을 보고 싶다면 여기 [기본 테이블 가져오기](https://cloud.google.com/bigquery/docs/datasets#dataset-acl)
+- bigquery에서 사용하는 테이블을 보고 싶다면 여기 [기본 테이블 가져오기](https://cloud.google.com/bigquery/docs/datasets#dataset-acl)
 를 참고해서 테이블을 가져올 수 있다.
 
-다른 bigquery 예제나 공부한 내용을 계속 업데이트할 예정이다.
+- 다른 bigquery 예제나 공부한 내용을 계속 업데이트할 예정이다.
 
 # 예제
 
-'bigquery-public-data' table에서 fullVisitorId, transactionRevenue, date 가져오기
+## 'bigquery-public-data' table에서 fullVisitorId, transactionRevenue, date 가져오기
 
 ## SQL 문
 ```buildoutcfg
@@ -296,7 +293,7 @@ WHERE
 ## 설명
 ### concat
 
->> CONCAT ( string_value1, string_value2 [, string_valueN ] )
+```CONCAT ( string_value1, string_value2 [, string_valueN ] )```
 
 인수
 - string_value: 다른 값에 연결할 문자열임
@@ -305,7 +302,7 @@ WHERE
 - string_value
 
 예시
->> SELECT CONCAT ( 'Happy ', 'Birthday ', 11, '/', '25' ) AS Result;
+```SELECT CONCAT ( 'Happy ', 'Birthday ', 11, '/', '25' ) AS Result;```
 
 결과
 ```
@@ -348,9 +345,9 @@ Happy Birthday 11/25
 | on ap         | Bon app'                           |
 | ottom         | Bottom-Dollar Marketse             |
 
----
+----
 
-방문객의 총 거래 수익 예측하기
+## 방문객의 총 거래 수익 예측하기
 
 ## 1. 모델 만들기
 
