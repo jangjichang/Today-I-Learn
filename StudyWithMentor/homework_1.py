@@ -25,14 +25,131 @@ A5: 프로토 타입은 2019-03-09까지 Github에 파일을 올려서 공유하
 실행 파일을 만들어서 공유한다.
 pyinstaller 링크: https://www.pyinstaller.org/
 """
+import unittest
 
 
 class FourCalculator:
-    def value_setter(self, first, second):
+    first = 0
+    second = 0
+    arithmetic_operator = ''
+    result = 0
+    message = ""
+    history = list()
+    expression = ""
+
+    def set_value(self, first, second):
         self.first = first
         self.second = second
 
+    def set_first_value(self, first):
+        self.first = first
 
-cal = FourCalculator()
-# print(type(cal))
-cal.value_setter(4, 2)
+    def set_second_value(self, second):
+        self.second = second
+
+    def set_arithmetic_operator(self, arithmetic_operator):
+        self.arithmetic_operator = arithmetic_operator
+
+    def set_message(self, msg):
+        self.message = msg
+
+    def get_error_msg(self):
+        return self.message
+
+    def get_result(self):
+        return self.result
+
+    def get_history(self):
+        return self.history
+
+    def add(self):
+        self.result = self.first + self.second
+        return self.result
+
+    def subtract(self):
+        self.result = self.first - self.second
+        return self.result
+
+    def multiply(self):
+        self.result = self.first * self.second
+        return self.result
+
+    def divide(self):
+        try:
+            self.result = self.first // self.second
+            if self.first % self.second:
+                self.result = self.first / self.second
+        except ZeroDivisionError:
+            self.result = "0으로 나눌 수 없습니다."
+        return self.result
+
+    def calculate(self):
+        if self.arithmetic_operator in ['+', '-', '*', '%']:
+            self.expression = str(self.first) + self.arithmetic_operator + str(self.second)
+            self.history.append(self.expression)
+            if self.arithmetic_operator == '+':
+                self.add()
+            elif self.arithmetic_operator == '-':
+                self.subtract()
+            elif self.arithmetic_operator == '*':
+                self.multiply()
+            elif self.arithmetic_operator == '%':
+                self.divide()
+        else:
+            self.message = "올바른 연산자를 입력하세요."
+            self.set_message(self.message)
+            self.error()
+
+
+class CustomTests(unittest.TestCase):
+    def test(self):
+        cal = FourCalculator()
+        cal.set_first_value(int(input("숫자 입력:")))
+        cal.set_second_value(int(input("숫자 입력:")))
+        cal.set_arithmetic_operator(input("연산자 입력:"))
+        # cal.set_first_value(4)
+        # cal.set_second_value(2)
+        # cal.set_arithmetic_operator('+')
+        cal.calculate()
+        result1 = cal.get_result()
+        self.assertEqual(result1, 6)
+
+        cal = FourCalculator()
+        cal.set_first_value(int(input("숫자 입력:")))
+        cal.set_second_value(int(input("숫자 입력:")))
+        cal.set_arithmetic_operator(input("연산자 입력:"))
+        # cal.set_first_value(4)
+        # cal.set_second_value(2)
+        # cal.set_arithmetic_operator('-')
+        cal.calculate()
+        result1 = cal.get_result()
+        self.assertEqual(result1, 2)
+
+        cal = FourCalculator()
+        cal.set_first_value(int(input("숫자 입력:")))
+        cal.set_second_value(int(input("숫자 입력:")))
+        cal.set_arithmetic_operator(input("연산자 입력:"))
+        # cal.set_first_value(4)
+        # cal.set_second_value(2)
+        # cal.set_arithmetic_operator('*')
+        cal.calculate()
+        result1 = cal.get_result()
+        self.assertEqual(result1, 8)
+
+        cal = FourCalculator()
+        cal.set_first_value(int(input("숫자 입력:")))
+        cal.set_second_value(int(input("숫자 입력:")))
+        cal.set_arithmetic_operator(input("연산자 입력:"))
+        # cal.set_first_value(4)
+        # cal.set_second_value(2)
+        # cal.set_arithmetic_operator('%')
+        cal.calculate()
+        result1 = cal.get_result()
+        self.assertEqual(result1, 2)
+
+        cal_stack = cal.get_history()
+        for i in cal_stack:
+            print(i)
+
+if __name__ == '__main__':
+    unittest.main()
