@@ -147,4 +147,45 @@ class CustomTests(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    # unittest.main()
+    print("숫자 2개를 입력하고 연산자 +, -, *, %를 입력합니다.")
+    print("계산기를 시작합니다.")
+    cal = FourCalculator()
+    while 1:
+        while 1:
+            try:
+                first_value = input("숫자 입력를 입력하거나 종료를 원하면 exit를 입력하세요.:")
+                if first_value == 'EXIT' or first_value == 'exit':
+                    break
+                first_value = int(first_value)
+                cal.set_first_value(first_value)
+                break
+            except ValueError as e:
+                print("올바른 숫자를 입력하세요.")
+        if first_value == 'EXIT' or first_value == 'exit':
+            break
+
+        while 1:
+            try:
+                second_value = input("숫자 입력:")
+                second_value = int(second_value)
+                cal.set_second_value(second_value)
+                break
+            except ValueError as e:
+                print("올바른 숫자를 입력하세요.")
+
+        while 1:
+            arithmetic_operator_value = input("연산자 입력:")
+            if arithmetic_operator_value in ['+', '-', '*', '%']:
+                cal.set_arithmetic_operator(arithmetic_operator_value)
+                break
+            print("올바른 연산자를 입력하세요. (+, -, *, %)")
+
+        cal.calculate()
+        print(cal.get_result())
+
+    print("계산기를 종료합니다.\n------------------------\n계산식은 다음과 같습니다.")
+    for i in cal.get_history():
+        print(i)
+    print("------------------------")
+    input("계산기 이용 내역을 복사하세요. 창을 닫으려면 엔터키를 입력하세요 :)")
