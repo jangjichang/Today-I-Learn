@@ -14,7 +14,7 @@ Q3. 이 프로그램이 제대로 됐음을 확인할 수 있는 방법을 정�
 Q4. 프로그램을 구현합니다.
 Q5. 프로그램을 공유합니다.
 
-A1: Windows11 버전 배포 시 기본 설치되는 계산기 앱이 필요하다. MS에 인턴으로 취업한 나는 이 프로젝트로 인해 정직원 여부가 결정된다.
+A1: 계산기를 만들자.
 A2: 처음엔 나의 수준을 파악하기 위해 클래스를 이용해 파이썬 콘솔로 사용할 수 있는 프로그램(이하 프로토 타입)을 만들라고 했다.
 이후 pyqt를 사용하여 gui도 구성한다. 기능은 숫자 두개를 사칙연산하는 것이다.
 pyqt 링크: https://wiki.python.org/moin/PyQt
@@ -31,7 +31,7 @@ import unittest
 class FourCalculator:
     first = 0
     second = 0
-    arithmetic_operator = ''
+    arithmetic_operator = ""
     result = 0
     message = ""
     history = list()
@@ -85,8 +85,6 @@ class FourCalculator:
 
     def calculate(self):
         if self.arithmetic_operator in ['+', '-', '*', '%']:
-            self.expression = str(self.first) + self.arithmetic_operator + str(self.second)
-            self.history.append(self.expression)
             if self.arithmetic_operator == '+':
                 self.add()
             elif self.arithmetic_operator == '-':
@@ -95,61 +93,58 @@ class FourCalculator:
                 self.multiply()
             elif self.arithmetic_operator == '%':
                 self.divide()
+            self.expression = str(self.first) + self.arithmetic_operator + str(self.second) + "=" + str(self.result)
+            self.history.append(self.expression)
         else:
             self.message = "올바른 연산자를 입력하세요."
             self.set_message(self.message)
-            self.error()
+            self.get_error_msg()
 
 
 class CustomTests(unittest.TestCase):
     def test(self):
+        print("숫자 2개를 입력하고 연산자 +, -, *, %를 입력합니다.")
+        print("계산기를 시작합니다.")
         cal = FourCalculator()
-        cal.set_first_value(int(input("숫자 입력:")))
-        cal.set_second_value(int(input("숫자 입력:")))
-        cal.set_arithmetic_operator(input("연산자 입력:"))
-        # cal.set_first_value(4)
-        # cal.set_second_value(2)
-        # cal.set_arithmetic_operator('+')
-        cal.calculate()
-        result1 = cal.get_result()
-        self.assertEqual(result1, 6)
+        while 1:
+            while 1:
+                try:
+                    first_value = input("숫자 입력를 입력하거나 종료를 원하면 exit를 입력하세요.:")
+                    if first_value == 'EXIT' or first_value == 'exit':
+                        break
+                    first_value = int(first_value)
+                    cal.set_first_value(first_value)
+                    break
+                except ValueError as e:
+                    print("올바른 숫자를 입력하세요.")
+            if first_value == 'EXIT' or first_value == 'exit':
+                break
 
-        cal = FourCalculator()
-        cal.set_first_value(int(input("숫자 입력:")))
-        cal.set_second_value(int(input("숫자 입력:")))
-        cal.set_arithmetic_operator(input("연산자 입력:"))
-        # cal.set_first_value(4)
-        # cal.set_second_value(2)
-        # cal.set_arithmetic_operator('-')
-        cal.calculate()
-        result1 = cal.get_result()
-        self.assertEqual(result1, 2)
+            while 1:
+                try:
+                    second_value = input("숫자 입력:")
+                    second_value = int(second_value)
+                    cal.set_second_value(second_value)
+                    break
+                except ValueError as e:
+                    print("올바른 숫자를 입력하세요.")
 
-        cal = FourCalculator()
-        cal.set_first_value(int(input("숫자 입력:")))
-        cal.set_second_value(int(input("숫자 입력:")))
-        cal.set_arithmetic_operator(input("연산자 입력:"))
-        # cal.set_first_value(4)
-        # cal.set_second_value(2)
-        # cal.set_arithmetic_operator('*')
-        cal.calculate()
-        result1 = cal.get_result()
-        self.assertEqual(result1, 8)
+            while 1:
+                arithmetic_operator_value = input("연산자 입력:")
+                if arithmetic_operator_value in ['+', '-', '*', '%']:
+                    cal.set_arithmetic_operator(arithmetic_operator_value)
+                    break
+                print("올바른 연산자를 입력하세요. (+, -, *, %)")
 
-        cal = FourCalculator()
-        cal.set_first_value(int(input("숫자 입력:")))
-        cal.set_second_value(int(input("숫자 입력:")))
-        cal.set_arithmetic_operator(input("연산자 입력:"))
-        # cal.set_first_value(4)
-        # cal.set_second_value(2)
-        # cal.set_arithmetic_operator('%')
-        cal.calculate()
-        result1 = cal.get_result()
-        self.assertEqual(result1, 2)
+            cal.calculate()
+            self.assertEqual(cal.get_result(), 4)
+            print(cal.get_result())
 
-        cal_stack = cal.get_history()
-        for i in cal_stack:
+        print("계산기를 종료합니다.\n------------------------\n계산식은 다음과 같습니다.")
+        for i in cal.get_history():
             print(i)
+        print("------------------------")
+
 
 if __name__ == '__main__':
     unittest.main()
