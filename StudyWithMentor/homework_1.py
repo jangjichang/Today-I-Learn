@@ -93,8 +93,9 @@ class FourCalculator:
                 self.multiply()
             elif self.arithmetic_operator == '%':
                 self.divide()
-            self.expression = str(self.first) + self.arithmetic_operator + str(self.second) + "=" + str(self.result)
-            self.history.append(self.expression)
+            if type(self.result) != str:
+                self.expression = str(self.first) + self.arithmetic_operator + str(self.second) + "=" + str(self.result)
+                self.history.append(self.expression)
         else:
             self.message = "올바른 연산자를 입력하세요."
             self.set_message(self.message)
