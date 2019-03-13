@@ -29,8 +29,29 @@ pyinstaller 링크: https://www.pyinstaller.org/
 1. while 문이 겹으로 들어가는데, 이걸 최대한 단순하게 만들 수 있을까요?
 예를 들어 while 안에 다시 들어오는 while은 반복을 위한 게아니라 그냥 올바른 값을 받기 위해 존재합니다.
 그 의미가 드러나도록 함수로 분리할 수 있을까요?
+
 2. FourCalculator는 단순한 동작을 지나치게 많이 추상화한 것 같습니다. 반면 while문 부분은 지나치게 복잡합니다.
 어떻게 해야 이 부분을 균형 있게 만들 수 있을까요?
+
+수정사항:
+1. FourCalculator함수에서 set_value, set_first_value, set_second_value, set_arithmetic_operator 함수를
+set_first_value, set_second_value, set_arithmetic_operator 함수로 변경하였습니다.
+올바른 값을 받는지 확인하는 부분도 이 함수에 추가하여 올바른 값을 받는 의미가 드러나도록 작성하였습니다.
+
+2.
+단순한 동작을 지나치게 많이 추상화한 것이 아래 메소드라고 생각하여 코드를 수정했습니다.
+에러 메시지를 가져오는 get_error_msg 메소드,
+계산 결과를 가져오는 get_result 메소드,
+연산 히스토리를 가져오는 get_history 메소드를 삭제했습니다.
+
+다만, 연산 히스토리를 저장하는 set_history 메소드는 calculate 메소드 안에서 호출하여 연산 히스토리를 저장합니다.
+
+while 문 부분이 지나치게 복잡한 것은 1번 사항에서 반영한 것과 중복되는 내용입니다. 올바른 값을 가져오는지 체크하는 기능을 메소드에
+추가했습니다.
+
+++ 추가적으로 calculate 메소드에서 연산자에 따라 분기하여 계산하는 부분을 if, else를 사용하지 않고
+dictionary형 변수인 'operators'에 연산자 (+, -, *, %)를 key로,
+그에 해당되는 함수(add, subtract, multiply, divide)를 value로 설정하였습니다.
 """
 import unittest
 
@@ -42,7 +63,6 @@ class FourCalculator:
     result = 0
     message = ""
     history = list()
-    expression = ""
 
     def __init__(self):
         print("숫자 2개를 입력하고 연산자 +, -, *, %를 입력합니다.")
@@ -55,28 +75,28 @@ class FourCalculator:
         print("------------------------")
         input("계산기 이용 내역을 복사하세요. 창을 닫으려면 엔터키를 입력하세요 :)")
 
-    def set_first_value_from_input(self):
+    def set_first_value(self):
         first_user_value = input("숫자를 입력하거나 종료를 원하면 exit를 입력하세요.:")
         if first_user_value == 'EXIT' or first_user_value == 'exit':
             return 1
         try:
-            first_user_value = float(first_user_value)
-            if first_user_value * 10 == int(first_user_value) * 10:
-                self.first = int(first_user_value)
+            self.first = float(first_user_value)
+            if self.first * 10 == int(self.first) * 10:
+                self.first = int(self.first)
             return 0
         except ValueError as e:
             print("올바른 숫자를 입력하세요.")
             return "ERROR"
 
-    def set_second_value_from_input(self):
+    def set_second_value(self):
         try:
             second_user_value = input("숫자 입력:")
-            second_user_value = float(second_user_value)
-            if second_user_value*10 == int(second_user_value) * 10:
-                self.second = int(second_user_value)
+            self.second = float(second_user_value)
+            if self.second * 10 == int(self.second) * 10:
+                self.second = int(self.second)
         except ValueError as e:
             print("올바른 숫자를 입력하세요.")
-            self.set_second_value_from_input()
+            self.set_second_value()
 
     def set_arithmetic_operator(self):
         operator_user_value = input("연산자 입력:")
@@ -85,6 +105,14 @@ class FourCalculator:
             return 1
         print("올바른 연산자를 입력하세요. (+, -, *, %)")
         self.set_arithmetic_operator()
+
+    def set_history(self):
+        if type(self.result) != str:
+            expression = str(self.first) + self.arithmetic_operator + str(self.second) + "=" + str(self.result)
+            self.history.append(expression)
+            print(self.history[-1])
+            return 1
+        print(self.result)
 
     def add(self):
         self.result = self.first + self.second
@@ -108,21 +136,14 @@ class FourCalculator:
         return self.result
 
     def calculate(self):
-        if self.arithmetic_operator == '+':
-            self.add()
-        elif self.arithmetic_operator == '-':
-            self.subtract()
-        elif self.arithmetic_operator == '*':
-            self.multiply()
-        elif self.arithmetic_operator == '%':
-            self.divide()
+        self.operators[self.arithmetic_operator](self)
+        self.set_history()
 
-        if type(self.result) != str:
-            self.expression = str(self.first) + self.arithmetic_operator + str(self.second) + "=" + str(self.result)
-            self.history.append(self.expression)
-            print(self.history[-1])
-            return 1
-        print("계산식이 잘못되었습니다.")
+    operators = {'+': add,
+                 '-': subtract,
+                 '*': multiply,
+                 '%': divide
+                 }
 
 
 class CustomTests(unittest.TestCase):
@@ -174,45 +195,18 @@ if __name__ == '__main__':
     # unittest.main()
     cal = FourCalculator()
     while 1:
-        break_flag = cal.set_first_value_from_input()
+        break_flag = cal.set_first_value()
         while break_flag == "ERROR":
-            break_flag = cal.set_first_value_from_input()
+            break_flag = cal.set_first_value()
         if break_flag:
             del cal
             break
-        cal.set_second_value_from_input()
+        cal.set_second_value()
         cal.set_arithmetic_operator()
         cal.calculate()
+
 
 """
-숫자 2개를 입력하고 연산자 +, -, *, %를 입력합니다.
-계산기를 시작합니다.
-숫자 입력를 입력하거나 종료를 원하면 exit를 입력하세요.:3
-숫자 입력:3
-연산자 입력:+
-3+3=6
-숫자 입력를 입력하거나 종료를 원하면 exit를 입력하세요.:3
-숫자 입력:3
-연산자 입력:-
-3-3=0
-숫자 입력를 입력하거나 종료를 원하면 exit를 입력하세요.:exi
-올바른 숫자를 입력하세요.
-숫자 입력를 입력하거나 종료를 원하면 exit를 입력하세요.:exi
-올바른 숫자를 입력하세요.
-숫자 입력를 입력하거나 종료를 원하면 exit를 입력하세요.:exit
-숫자 입력:
-
-올바르지 않은 값을 2번 입력하고 exit를 입력했더니 종료되는것을 예상했지만 그렇지 않았다.
-
-
-    while 1:
-        break_flag = cal.set_first_value_from_input()
-        while break_flag =="ERROR":
-            break_flag = cal.set_first_value_from_input()
-        if break_flag:
-            del cal
-            break
-        cal.set_second_value_from_input()
-        cal.set_arithmetic_operator()
-        cal.calculate()
+연산자에 따라 if, else문을 쓰지 않고 dict를 사용해서 연산하도록 수정했음
+add, substract등 에서 expression을 history에 저장하는 방법 생각하기
 """
