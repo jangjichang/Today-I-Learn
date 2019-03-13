@@ -63,6 +63,7 @@ class FourCalculator:
     result = 0
     message = ""
     history = list()
+    exit_flag = 0
 
     def __init__(self):
         print("숫자 2개를 입력하고 연산자 +, -, *, %를 입력합니다.")
@@ -76,17 +77,19 @@ class FourCalculator:
         input("계산기 이용 내역을 복사하세요. 창을 닫으려면 엔터키를 입력하세요 :)")
 
     def set_first_value(self):
-        first_user_value = input("숫자를 입력하거나 종료를 원하면 exit를 입력하세요.:")
-        if first_user_value == 'EXIT' or first_user_value == 'exit':
-            return 1
         try:
+            first_user_value = input("숫자를 입력하거나 종료를 원하면 exit를 입력하세요.:")
+            if first_user_value == 'EXIT' or first_user_value == 'exit':
+                self.exit_flag = 1
+                return 0
+
             self.first = float(first_user_value)
             if self.first * 10 == int(self.first) * 10:
                 self.first = int(self.first)
-            return 0
+                return 1
         except ValueError as e:
             print("올바른 숫자를 입력하세요.")
-            return "ERROR"
+            self.set_first_value()
 
     def set_second_value(self):
         try:
@@ -195,10 +198,8 @@ if __name__ == '__main__':
     # unittest.main()
     cal = FourCalculator()
     while 1:
-        break_flag = cal.set_first_value()
-        while break_flag == "ERROR":
-            break_flag = cal.set_first_value()
-        if break_flag:
+        cal.set_first_value()
+        if cal.exit_flag:
             del cal
             break
         cal.set_second_value()
