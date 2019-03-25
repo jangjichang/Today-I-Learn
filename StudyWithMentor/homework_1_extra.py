@@ -24,7 +24,7 @@ generator가 없는 숫자를 self number라고 하고, 1, 3, 5, 7, 9, 20, 31 �
 import unittest
 
 
-input = list(range(1, 491))
+input = list(range(1, 5001))
 output = [1, 3, 5, 7, 9, 20, 31, 42, 53, 64, 75, 86, 97, 108, 110, 121, 132, 143, 154, 165, 176, 187, 198, 209, 211,
          222, 233, 244, 255, 266, 277, 288, 299, 310, 312, 323, 334, 345, 356, 367, 378, 389, 400, 411, 413, 424, 435,
          446, 457, 468, 479, 490]
@@ -39,16 +39,29 @@ def generator(n):
     return result
 
 
+def self_number_generator(input):
+    for i in input:
+        generator_result = generator(i)
+        if generator_result in list_result:
+            list_result.remove(generator_result)
+
+
 class SelfNumberTest(unittest.TestCase):
-    def self_number_check(self):
-        for i in input:
-            generator_result = generator(i)
-            if generator_result in list_result:
-                list_result.remove(generator_result)
+    def self_number_test(self):
+        self_number_generator(input)
         self.assertEqual(list_result, output)
 
 
 if __name__ == '__main__':
     unittest.main()
+
+self_number_generator(input)
+print(list_result)
+
+
+
+
+
+
 
 
