@@ -27,8 +27,7 @@ def get_self_number(limit):
     return sum(number_list)
 
 
-sum_answer = get_self_number(5000)
-print(sum_answer)
+print(get_self_number(5000))
 
 
 
