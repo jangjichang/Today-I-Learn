@@ -1,11 +1,14 @@
+import pytest
+
 input = list(range(1, 24))
 output = [2, 4, 6, 8, 10, 12, 14, 16, 18, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 22, 24, 26, 28]
 
 
 # pytest를 이용해 testcase에 대해 함수 d의 결과값이 output과 같은지 확인
-def test():
-    for i in input:
-        assert output[i-1] == d(i)
+# def Test_simple():
+#     for i in input:
+#         assert output[i-1] == d(i)
+#     assert 1 == 2
 
 
 # n의 각 자리 숫자와 n의 합을 구한다.
