@@ -59,10 +59,10 @@ DATABASES = {
 서버가 리눅스 환경이라고 가정하고 다음의 명령어를 입력한다.
 
 DJANGO Project의 최상위로 이동하여
->> mkdir db
->> mv db.sqlite3 db/
->> chmod 777 db/
->> chmod 666 db/db.sqlite3
+>> mkdir db<br>
+>> mv db.sqlite3 db/<br>
+>> chmod 777 db/<br>
+>> chmod 666 db/db.sqlite3<br>
 
 이러한 설정을 하고 pythonanywhere을 이용해서 배포하면
 
