@@ -12,3 +12,4 @@
 ## 읽고 있는 책
 1. [그림으로 배우는 HTTP & Network](http://www.yes24.com/24/goods/15894097)
 1. [탤런트 코드](http://www.yes24.com/Product/Goods/3424313)
+1. [파이썬 웹 프로그래밍 (실전편)](http://www.hanbit.co.kr/store/books/look.php?p_code=B7703021280)
