@@ -6,6 +6,7 @@
 
 ## 읽을 책
 1. [클린 코드를 위한 테스트 주도 개발](http://www.yes24.com/24/goods/16886031)
+1. [Test-Driven Development: By Example](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=37469717)
 1. [패턴, Wiki 그리고 XP](http://www.yes24.com/24/goods/3696323)
 
 ## 읽고 있는 책
