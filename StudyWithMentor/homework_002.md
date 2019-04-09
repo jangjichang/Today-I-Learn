@@ -150,6 +150,7 @@ class BookmarkDV(LoginRequiredMixin, DetailView):
 
 # 개선 사항
 6. 결과를 확인하고 추가로 배운 점을 적용해 1로 돌아가서 다듬습니다.
-
+- MVT라는 패턴을 생각해본다면 bookmark detail에서 보여줄 페이지는 V에서 결정하는게 맞으니,
+T에서 user.is_staff에 따라 보여주는것을 처리하지말고 V에서 user.is_staff를 확인하고 template html을 설정하자.
 
     
