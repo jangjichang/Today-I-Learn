@@ -135,7 +135,7 @@ class BookmarkDV(LoginRequiredMixin, DetailView):
 - 링크를 클릭하여
 [bookmark list](http://jangjichang.pythonanywhere.com/bookmark/?utm_source=github&utm_medium=banner&utm_campaign=post)
 페이지에 접속합니다.
-- 로그인하지 않았으므로 로그인 페이지로 이동합니다.
+- 게시물을 클릭할 경우, 로그인하지 않았으므로 로그인 페이지로 이동합니다.
 - 오른쪽 위 register로 이동하여 계정을 만들거나 테스트용 계정으로 로그인합니다.
     - 사용자 이름:mentor // 비밀번호: studysoft1     // 이 계정은 게시물을 볼 수 있는 권한은 없습니다.
     - 사용자 이름:mentor1 // 비밀번호: studyhard1    // 이 계정은 게시물을 볼 수 있는 권한이 있습니다.
