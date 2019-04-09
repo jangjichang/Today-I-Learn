@@ -87,6 +87,50 @@ class CreateUserForm(UserCreationForm):
         return user
 ```
 
+- Bookmark detail view 설정(bookmark/views.py)
+- login required 설정함
+```python
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, DetailView
+from .models import Bookmark
+
+
+# Create your views here.
+class BookmarkLV(ListView):
+    model = Bookmark
+
+
+class BookmarkDV(LoginRequiredMixin, DetailView):
+    login_url = '/accounts/login'
+    model = Bookmark
+```
+
+- Bookmark detail.html
+- user.is_staff에 따라 보여지는 값 다르게 설정
+```html
+{% extends "base.html" %}
+
+{% block title %}Django Bookmark Detail{% endblock %}
+
+{% block content %}
+{% if user.is_staff %}
+<div id="content">
+    <h1>Bookmark Detail</h1>
+    <ul>
+        <li>URL: <a href="{{ object.url }}"> {{ object.url }} </a></li>
+    </ul>
+    <!--<div id = "test">-->
+    <!--Hi-->
+    <!--</div>-->
+</div>
+{% else %}
+<div id="content">
+    <h1>Bookmark Detail</h1>
+    <h4>구독하시면 볼 수 있습니다!</h4>
+</div>
+{% endif %}
+{% endblock %}
+```
 5. 프로그램을 공유합니다.
 - 링크를 클릭하여
 [bookmark list](http://jangjichang.pythonanywhere.com/bookmark/?utm_source=github&utm_medium=banner&utm_campaign=post)
@@ -106,4 +150,6 @@ class CreateUserForm(UserCreationForm):
 
 # 개선 사항
 6. 결과를 확인하고 추가로 배운 점을 적용해 1로 돌아가서 다듬습니다.
+
+
     
