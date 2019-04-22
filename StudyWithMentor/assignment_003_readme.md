@@ -22,3 +22,43 @@ card에 대한 기록 사항을 담는 activity 테이블이 필요합니다.
 - 왼쪽부터 시간 순으로 만든 list를 보여준다.
 - 각 list, card, activity에는 생성, 보여주기(화면에 나타냄), 수정, 완료 기능이 있다.
 
+# 1.2 테이블 설계
+- card 테이블과 list 테이블 간에는 N:1 관계가 성립된다.
+- 즉, 하나의 list는 여러개의 card를 가질 수 있고 하나의 card는 하나의 list에만 속하는 관계이다.
+- 이 관계는 card 테이블의 list 속성에 ForeignKey 필드로 지정된다.
+- 마찬가지로 activity 테이블과 card 테이블 간에는 N:1 관계가 성립된다.  
+
+
+- 표 1-1 To Do List 앱 - 테이블 설계(List 모델 클래스)
+
+| 필드명      | 타입          | 제약 조건          | 설명                 |
+|-------------|---------------|--------------------|----------------------|
+| id          | Integer       | PK, Auto Increment | 기본 키              |
+| name        | CharField(50) |                    | 할 일 카테고리 이름  |
+| owner | ForeignKey(User) |            | 할 일 카테고리 소유자 |
+| create_date | DateTimeField | auto_now_add       | 카테고리 생성한 날짜 |
+| modify_date | DateTimeField | auto_now           | 카테고리 수정한 날짜 |
+
+
+- 표 1-2 To Do List 앱 - 테이블 설계(Card 모델 클래스)
+
+| 필드명        | 타입             | 제약 조건          | 설명                  |
+|---------------|------------------|--------------------|-----------------------|
+| id            | Integer          | PK, Auto Increment | 기본 키               |
+| name          | CharField(50)    |                    | 할 일 이름            |
+| description   | CharField(100)   | Blank              | 할 일 내용 한 줄 설명 |
+| owner         | ForeignKey(User) |                    | 할 일 소유자          |
+| list          | ForeignKey(List) |                    | 할 일이 소속된 리스트 |
+| create_date   | DateTimeField    | auto_now_add       | 할 일 생성한 날짜     |
+| modify_date   | DateTimeField    | auto_now           | 할 일 수정한 날짜     |
+| deadline_date | DateTimeField    | Blank              | 할 일 마감 날짜       |
+
+- 표 1-3 To Do List 앱 - 테이블 설계(Activity 모델 클래스)
+
+| 필드명      | 타입             | 제약 조건          | 설명                   |
+|-------------|------------------|--------------------|------------------------|
+| id          | Integer          | PK, Auto Increment | 기본 키                |
+| description | CharField(100)   | Blank              | 할 일에 대한 기록 사항 |
+| owner       | ForeignKey(User) |                    | 기록 사항 소유자       |
+| create_date | DateTimeField    | auto_now_add       | 기록 사항 생성한 날짜  |
+| modify_date | DateTimeField    | auto_now           | 기록 사항 수정한 날짜  |
