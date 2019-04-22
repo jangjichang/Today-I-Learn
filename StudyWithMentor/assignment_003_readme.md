@@ -1,3 +1,5 @@
+# 과제 설명
+
 이번 과제는 작업 관리 프로그램 입니다.
 간단한 To Do List부터 Trello 같은 칸반 보드까지 자유롭게 만드시면 됩니다.
 
@@ -17,8 +19,22 @@
 card에 대한 기록 사항을 담는 activity 테이블이 필요합니다.
 
 # 1.1 화면 UI 설계
-- 사진 1-1 trello 예시 사진 
-![trello_copy](../image/trello_copy.png)
+
+list 레코드 하나에 여러 개의 card 레코드를 같이 출력해, list 레코드와 card 레코드를 수정할 수 있도록한다.
+
+![리스트생성과카드생성](../image/trello_add_list.png)
+- 사진 1-1 ToDoList 앱 - list 및 card를 보여주고 이 화면에서 각 list를 추가하거나, list에 card를 추가한다.
+
+![리스트수정](../image/trello_update_list.png)
+- 사진 1-2 ToDoList 앱 - list를 수정한다.
+
+![카드옵션](../image/trello_option_card.png)
+- 사진 1-3 card에 ... 옵션을 누른 경우 다음과 같은 옵션을 선택할 수 있다.
+
+![카드수정](../image/trello_update_card.png)
+- 사진 1-4 ToDoList 앱 - card를 수정한다.
+- 사진 1-3에서 Update card(만들 예정임)를 클릭하면 card 수정 화면이 나온다.
+
 - trello와 같이 할 일을 card로 만들고, card들을 그룹화해 list로 보여준다.
 - 왼쪽부터 시간 순으로 만든 list를 보여준다.
 - 각 list, card, activity에는 생성, 보여주기(화면에 나타냄), 수정, 완료 기능이 있다.
