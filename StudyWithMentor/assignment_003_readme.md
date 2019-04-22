@@ -16,3 +16,9 @@
 - To Do List 앱에 필요한 테이블은, 할 일을 저장하는 card 테이블과 이 card들을 그룹화해 그 정보를 담을 수 있는 list 테이블과 
 card에 대한 기록 사항을 담는 activity 테이블이 필요합니다.
 
+# 1.1 화면 UI 설계
+- ![trello_copy](./Today-I-Learn/image/trello_copy.png)
+- trello와 같이 할 일을 card로 만들고, card들을 그룹화해 list로 보여준다.
+- 왼쪽부터 시간 순으로 만든 list를 보여준다.
+- 각 list, card, activity에는 생성, 보여주기(화면에 나타냄), 수정, 완료 기능이 있다.
+
