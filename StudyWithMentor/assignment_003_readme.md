@@ -62,3 +62,23 @@ card에 대한 기록 사항을 담는 activity 테이블이 필요합니다.
 | owner       | ForeignKey(User) |                    | 기록 사항 소유자       |
 | create_date | DateTimeField    | auto_now_add       | 기록 사항 생성한 날짜  |
 | modify_date | DateTimeField    | auto_now           | 기록 사항 수정한 날짜  |
+
+# 1.3 URL 설계
+
+# 1.4 작업/코딩 순서
+
+# 2 개발 코딩하기
+
+# 2.1 뼈대 만들기
+
+# 2.2 모델 코딩하기
+
+# 2.3 URLconf 코딩하기
+
+# 2.4 뷰 코딩하기
+
+# 2.5 템플릿 코딩하기
+
+# 2.6 그 외 작업 코딩하기
+
+# 3 지금까지의 작업 확인하기
