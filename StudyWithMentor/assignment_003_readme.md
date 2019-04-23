@@ -82,6 +82,17 @@ list 레코드 하나에 여러 개의 card 레코드를 같이 출력해, list 
 
 # 1.3 URL 설계
 
+| URL 패턴              | 뷰 이름                    | 템플릿 파일명            |
+|-----------------------|----------------------------|--------------------------|
+| /todo/                | ListCardLV(ListView)       | list_card_show.html      |
+| /todo/list/           | ListCardLV(ListView)       | list_card_show.html      |
+| /todo/list/add/       | ListCreateView(CreateView) | list_form.html           |
+| /todo/list/99/update/ | ListUpdateView(UpdateView) | list_form.html           |
+| /todo/list/99/delete/ | ListDeleteView(DeleteView) | list_confirm_delete.html |
+| /todo/card/add/       | CardCreateView(CreateView) | card_form.html           |
+| /todo/card/99/update  | CardCreateView(CreateView) | card_form.html           |
+| /todo/card/99/delete/ | CardDeleteView(DeleteView) | card_confirm_delete.html |
+
 # 1.4 작업/코딩 순서
 
 # 2 개발 코딩하기
