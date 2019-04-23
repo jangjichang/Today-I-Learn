@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=C:\Users\jc\Documents\GitHub\Today-I-Learn\StudyWithMentor\myenv"
+set "VIRTUAL_ENV=C:\Users\jc\Documents\GitHub\Today-I-Learn\StudyWithMentor\assignment_003\todoenv"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
@@ -9,7 +9,7 @@ if defined _OLD_VIRTUAL_PROMPT (
     )
     set "_OLD_VIRTUAL_PROMPT=%PROMPT%"
 )
-set "PROMPT=(myenv) %PROMPT%"
+set "PROMPT=(todoenv) %PROMPT%"
 
 REM Don't use () to avoid problems with them in %PATH%
 if defined _OLD_VIRTUAL_PYTHONHOME goto ENDIFVHOME
