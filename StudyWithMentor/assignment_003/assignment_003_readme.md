@@ -20,7 +20,7 @@ card에 대한 기록 사항을 담는 activity 테이블이 필요합니다.
 
 # 1.1 화면 UI 설계
 
-list 레코드 하나에 여러 개의 card 레코드를 같이 출력해, list 레코드와 card 레코드를 수정할 수 있도록한다.
+Work list(이하 list) 레코드 하나에 여러 개의 card 레코드를 같이 출력해, list 레코드와 card 레코드를 수정할 수 있도록한다.
 
 ![리스트생성과카드생성](../../image/trello_add_list.png)
 - 사진 1-1 ToDoList 앱 - list 및 card를 보여주고 이 화면에서 각 list를 추가하거나, list에 card를 추가한다.
@@ -65,7 +65,7 @@ list 레코드 하나에 여러 개의 card 레코드를 같이 출력해, list 
 | name          | CharField(50)    |                    | 할 일 이름            |
 | description   | CharField(100)   | Blank              | 할 일 내용 한 줄 설명 |
 | owner         | ForeignKey(User) |                    | 할 일 소유자          |
-| list          | ForeignKey(List) |                    | 할 일이 소속된 리스트 |
+| worklist          | ForeignKey(List) |                    | 할 일이 소속된 리스트 |
 | create_date   | DateTimeField    | auto_now_add       | 할 일 생성한 날짜     |
 | modify_date   | DateTimeField    | auto_now           | 할 일 수정한 날짜     |
 | deadline_date | DateTimeField    | Blank              | 할 일 마감 날짜       |
@@ -90,7 +90,7 @@ list 레코드 하나에 여러 개의 card 레코드를 같이 출력해, list 
 | /todo/list/99/update/ | ListUpdateView(UpdateView) | list_form.html           |
 | /todo/list/99/delete/ | ListDeleteView(DeleteView) | list_confirm_delete.html |
 | /todo/card/add/       | CardCreateView(CreateView) | card_form.html           |
-| /todo/card/99/update  | CardCreateView(CreateView) | card_form.html           |
+| /todo/card/99/update  | CardUpdateView(CreateView) | card_form.html           |
 | /todo/card/99/delete/ | CardDeleteView(DeleteView) | card_confirm_delete.html |
 
 # 1.4 작업/코딩 순서
