@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}worklist_list.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+
+{% block content %}
+<div id="content">
+    <div>
+    {% if object_list %}
+        {% for work in object_list %}
+            {% if forloop.last %}
+                <ul><a href="{% url 'workmanagement:worklist_add' %}">+ Add another worklist</a></ul>
+            {% else %}
+                <b><i>{{ work.name }}</i></b>
+                <span><a href="#"> edit</a></span>
+                <span><a href="#"> delete</a></span>
+                {% if work.card_set.all %}
+                    {% for card in work.card_set.all %}
+                        <li>
+                            {% if forloop.last %} <a href="#">+ Add another card</a>
+                            {% else %} <a href="#">{{ card.name }}</a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                <li><a href="#">+ Add a card</a></li>
+                {% endif %}
+            <hr/>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <hr/>
+        <a href="{% url 'workmanagement:worklist_add' %}">+ Add a worklist</a>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

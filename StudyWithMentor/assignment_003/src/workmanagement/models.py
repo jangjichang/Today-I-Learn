@@ -21,7 +21,7 @@ class Card(models.Model):
     worklist = models.ForeignKey(WorkList, on_delete=models.CASCADE)
     create_date = models.DateField(auto_now_add=True)
     modify_date = models.DateField(auto_now=True)
-    deadline_date = models.DateField()
+    deadline_date = models.DateField(blank=True)
 
     def __str__(self):
         return self.name

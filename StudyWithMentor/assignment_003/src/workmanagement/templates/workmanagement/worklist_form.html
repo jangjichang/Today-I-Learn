@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}worklist_form.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% block content %}
+<div id="content">
+    <h1>Worklist Create/Update - {{ user }}</h1>
+
+    <form action="." method="post">{% csrf_token %}
+        {% if form.errors %}
+        <p class="errornote">Wrong! Please correct the error(s) below.</p>
+        {% endif %}
+
+        <p>This is a creation or update form for your worklist.</p>
+
+        <fieldset class="aligned">
+            <div class="form-row">
+                {{ form.name.label_tag }} {{ form.name }}
+            </div>
+        </fieldset>
+
+        <div class="submit-row">
+            <input type="submit" value="Submit"/>
+        </div>
+
+        <script type="text/javascript">document.getElementById('id_name').focus();</script>
+    </form>
+</div>
+{% endblock %}

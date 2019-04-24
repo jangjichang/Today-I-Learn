@@ -46,7 +46,7 @@ Work list(이하 list) 레코드 하나에 여러 개의 card 레코드를 같�
 - 마찬가지로 activity 테이블과 card 테이블 간에는 N:1 관계가 성립된다.  
 
 
-- 표 1-1 To Do List 앱 - 테이블 설계(List 모델 클래스)
+- 표 1-1 To Do List 앱 - 테이블 설계(WorkList 모델 클래스)
 
 | 필드명      | 타입          | 제약 조건          | 설명                 |
 |-------------|---------------|--------------------|----------------------|
@@ -65,7 +65,7 @@ Work list(이하 list) 레코드 하나에 여러 개의 card 레코드를 같�
 | name          | CharField(50)    |                    | 할 일 이름            |
 | description   | CharField(100)   | Blank              | 할 일 내용 한 줄 설명 |
 | owner         | ForeignKey(User) |                    | 할 일 소유자          |
-| worklist          | ForeignKey(List) |                    | 할 일이 소속된 리스트 |
+| worklist          | ForeignKey(List) |                | 할 일이 소속된 리스트 |
 | create_date   | DateTimeField    | auto_now_add       | 할 일 생성한 날짜     |
 | modify_date   | DateTimeField    | auto_now           | 할 일 수정한 날짜     |
 | deadline_date | DateTimeField    | Blank              | 할 일 마감 날짜       |
@@ -84,22 +84,47 @@ Work list(이하 list) 레코드 하나에 여러 개의 card 레코드를 같�
 
 | URL 패턴              | 뷰 이름                    | 템플릿 파일명            |
 |-----------------------|----------------------------|--------------------------|
-| /todo/                | ListCardLV(ListView)       | list_card_show.html      |
-| /todo/list/           | ListCardLV(ListView)       | list_card_show.html      |
-| /todo/list/add/       | ListCreateView(CreateView) | list_form.html           |
-| /todo/list/99/update/ | ListUpdateView(UpdateView) | list_form.html           |
-| /todo/list/99/delete/ | ListDeleteView(DeleteView) | list_confirm_delete.html |
+| /todo/                | ListCardLV(ListView)       | worklist_list.html      |
+| /todo/list/           | ListCardLV(ListView)       | worklist_list.html      |
+| /todo/list/99         | ListDV(DetailView)       | worklist_detail.html      |
+| /todo/list/add/       | ListCreateView(CreateView) | worklist_form.html           |
+| /todo/list/99/update/ | ListUpdateView(UpdateView) | worklist_form.html           |
+| /todo/list/99/delete/ | ListDeleteView(DeleteView) | worklist_confirm_delete.html |
+| /todo/card/99         | CardDV(DetailView) | card_detail.html           |
 | /todo/card/add/       | CardCreateView(CreateView) | card_form.html           |
-| /todo/card/99/update  | CardUpdateView(CreateView) | card_form.html           |
-| /todo/card/99/delete/ | CardDeleteView(DeleteView) | card_confirm_delete.html |
+| /todo/card/99/99/update  | CardUpdateView(CreateView) | card_form.html           |
+| /todo/card/99/99/delete/ | CardDeleteView(DeleteView) | card_confirm_delete.html |
+
+- 표 1-4 To Do List 앱 - URLconf 설계
 
 # 1.4 작업/코딩 순서
+
+| 작업 순서        | 관련 명령/파일     | 필요한 작업 내용                  |
+|------------------|--------------------|-----------------------------------|
+| 뼈대 만들기      | startproject       | todoapp 프로젝트 생성             |
+|                  | settings.py        | 프로젝트 설정 항목 변경           |
+|                  | migrate            | User/Group 테이블 생성            |
+|                  | createsuperuser    | 프로젝트 관리자인 슈퍼유저를 만듦 |
+|                  | startapp           | workmanagement 앱 생성            |
+|                  | settings.py        | workmanagement 앱 등록            |
+| 모델 코딩하기    | models.py          | 모델(테이블) 정의                 |
+|                  | admin.py           | Admin 사이트에 모델 등록          |
+|                  | makemigrations     | 모델을 데이터베이스에 반영        |
+|                  | migrate            |                                   |
+| URLconf 코딩하기 | urls.py            | URL 정의                          |
+| 뷰 코딩하기      | views.py           | 뷰 로직 작성                      |
+| 템플릿 코딩하기  | templates 디렉터리 | 템플릿 파일 작성                  |
+| 그 외 코딩하기   | -                  | (없음)                            |
+
+- 표 1-5 To Do List 앱 - 작업/코딩 순서
 
 # 2 개발 코딩하기
 
 # 2.1 뼈대 만들기
 
+
 # 2.2 모델 코딩하기
+
 
 # 2.3 URLconf 코딩하기
 

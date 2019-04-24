@@ -1,2 +1,92 @@
-Life is too short
-you need python
+Data and Machine Learning on Google Cloud Platform Specialization
+
+About GCP Big Data and Machine Learning Fundamentals
+
+How to do the Labs
+
+Meet Your Instructor
+
+Welcome to Introduction to GCP and its Big Data Products
+
+What is the Google Cloud Platform?
+
+GCP Big Data Products
+
+Usage Scenarios
+
+Module Review
+
+Module Resources
+
+Welcome to Foundations of GCP Compute and Storage
+
+CPUs On Demand (Compute Engine)
+
+Lab: Start Google Compute Engine instance, ssh access
+
+A global filesystem (Cloud Storage)
+
+Lab: Interact with Cloud Storage
+
+Module Review
+
+Module Resources
+
+Data Analysis on the Cloud: Managed services for common use cases
+
+Stepping Stones to Transformation
+
+Your SQL database in the cloud
+
+Lab: Working with Cloud SQL
+
+Managed Hadoop in the cloud
+
+Lab: Providing Recommendations with Cloud Dataproc
+
+Module Review
+
+Module Resources
+
+
+
+
+Intro to Scaling Data Analysis: Change How You Compute with GCP
+
+Fast Random Access
+
+Warehouse and Interactively Query Petabytes
+
+Interactive, Iterative Development & Demo
+
+Lab: Create ML Dataset with BigQuery
+
+Machine learning with TensorFlow
+
+Lab: Carry Out ML with TensorFlow
+
+Pre-built machine learning models & lab
+
+Lab: Machine Learning APIs
+
+Module Review
+
+Scaling Data Analysis : Resources
+
+Machine Learning : Resources
+
+Intro to Data Processing Architectures
+
+Message-oriented Architectures
+
+Serverless Data Pipelines
+
+Module Review
+
+Module Resources
+
+Summary of GCP, Big Data, and ML
+
+Next Steps
+
+Additional Resources
