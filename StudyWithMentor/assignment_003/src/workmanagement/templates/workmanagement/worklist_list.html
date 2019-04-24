@@ -2,36 +2,40 @@
 {% block title %}worklist_list.html{% endblock %}
 
 {% load staticfiles %}
-{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+{% block extrastyle %}{% static "workmanagement/workmanagement.css" %}{% endblock %}
 
 {% block content %}
 <div id="content">
-    <div>
+    <div class="row">
     {% if object_list %}
-        {% for work in object_list %}
-            {% if forloop.last %}
-                <ul><a href="{% url 'workmanagement:worklist_add' %}">+ Add another worklist</a></ul>
-            {% else %}
-                <b><i>{{ work.name }}</i></b>
-                <span><a href="#"> edit</a></span>
-                <span><a href="#"> delete</a></span>
-                {% if work.card_set.all %}
-                    {% for card in work.card_set.all %}
-                        <li>
-                            {% if forloop.last %} <a href="#">+ Add another card</a>
-                            {% else %} <a href="#">{{ card.name }}</a>
-                            {% endif %}
-                        </li>
+        {% for worklist in object_list %}
+        <div class="col-md-2 worklist">
+            <p><b><i>{{ worklist.name }} </i></b>
+            <span><a href="#">edit</a></span>
+            <span><a href="#">delete</a></span></p>
+                {% if worklist.card_set.all %}
+                    {% for card in worklist.card_set.all %}
+                        <p>{{card.name}}
+                        <span><a href="#">edit</a></span>
+                        <span><a href="#">delete</a></span></p>
+                        {% if forloop.last %}
+                            <p><a href="{% url 'workmanagement:card_add' worklist.id %}">+Add another card</a></p>
+                        {% endif %}
                     {% endfor %}
                 {% else %}
-                <li><a href="#">+ Add a card</a></li>
+                    <p><a href="{% url 'workmanagement:card_add' worklist.id %}">+Add a card</a></p>
                 {% endif %}
-            <hr/>
+        </div>
+            {% if forloop.last %}
+                <div class="col-md-2 worklist">
+                    <p><a href="{% url 'workmanagement:worklist_add' %}">+Add another worklist</a></p>
+                </div>
             {% endif %}
         {% endfor %}
     {% else %}
-        <hr/>
-        <a href="{% url 'workmanagement:worklist_add' %}">+ Add a worklist</a>
+        <div class="worklist">
+            <a href="{% url 'workmanagement:worklist_add' %}">+Add a worklist</a>
+        </div>
     {% endif %}
     </div>
 </div>
