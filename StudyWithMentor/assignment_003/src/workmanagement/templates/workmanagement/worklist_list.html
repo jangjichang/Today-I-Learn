@@ -5,11 +5,40 @@
 {% block extrastyle %}{% static "workmanagement/workmanagement.css" %}{% endblock %}
 
 {% block content %}
-<div id="content">
-    <div class="row">
+<div class="d-flex flex-nowrap">
+    <div class="col-8 col-md-3">
+        <div class="p-2 worklist">
+            <div class="p-2 worklist-title">
+                <span>Title 1</span>
+                <button type="button" class="btn float-right see-more">...</button>
+            </div>
+            <div class="p-2 mycard-title">
+                <span>Card content</span>
+                <div class="p-2"
+            </div>
+            <div class="p-2 mycard-title">Card content</div>
+            <div class="p-2 mycard-title">Card content</div>
+            <div class="p-2 mycard-title">Card content</div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</div>
+{% endblock %}
+
+
+
+<div id="container">
+    <div class="d-flex flex-nowrap">
     {% if object_list %}
         {% for worklist in object_list %}
-        <div class="col-md-2 worklist">
+        <div class="p-2">
+            <!--<div class="card mb-4 box-shadow  worklist">-->
+            <div>
             <p><b><i>{{ worklist.name }} </i></b>
             <span><a href="#">edit</a></span>
             <span><a href="#">delete</a></span></p>
@@ -25,10 +54,14 @@
                 {% else %}
                     <p><a href="{% url 'workmanagement:card_add' worklist.id %}">+Add a card</a></p>
                 {% endif %}
+            </div>
         </div>
             {% if forloop.last %}
-                <div class="col-md-2 worklist">
-                    <p><a href="{% url 'workmanagement:worklist_add' %}">+Add another worklist</a></p>
+                <div class="p-2">
+                    <!--<div class="card mb-4 box-shadow  worklist">-->
+                    <div>
+                        <p><a href="{% url 'workmanagement:worklist_add' %}">+Add another worklist</a></p>
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}
@@ -39,4 +72,3 @@
     {% endif %}
     </div>
 </div>
-{% endblock %}

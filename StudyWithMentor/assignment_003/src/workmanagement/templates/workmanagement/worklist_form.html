@@ -7,7 +7,7 @@
 
 {% block content %}
 <div id="content">
-    <h1>Worklist Create/Update - {{ user }}</h1>
+    <h1>Worklist Create/Update</h1>
 
     <form action="." method="post">{% csrf_token %}
         {% if form.errors %}

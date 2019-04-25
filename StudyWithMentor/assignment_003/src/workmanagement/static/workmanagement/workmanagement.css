@@ -1,5 +1,21 @@
+div {
+    border-radius: 7px;
+}
+
 div.worklist {
     background-color:#6b808c;
-    margin: 10px;
-    border-radius: 10px;
+}
+
+div.worklist-title {
+    background-color:#6b808c;
+    margin-bottom: 5%
+}
+
+div.mycard-title {
+    background-color:#fff;
+    margin-bottom: 4%;
+}
+
+button.see-more {
+    font-weight: bold;
 }
