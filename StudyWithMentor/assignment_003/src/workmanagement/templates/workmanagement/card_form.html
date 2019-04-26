@@ -1,10 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!--todo: crispy로 form 변경하기-->
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}worklist_form.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="content">
+    <h1>Card Create/Update</h1>
+
+    <form action="." method="post">{% csrf_token %}
+        {% if form.errors %}
+        <p class="errornote">Wrong! Please correct the error(s) below.</p>
+        {% endif %}
+
+        <p>This is a creation or update form for your card.</p>
+        <fieldset class="aligned">
+            <div class="form-row">
+                {{ form.name.label_tag }} {{ form.name }}
+            </div>
+            <div class="form-row">
+                {{ form.description.label_tag }} {{ form.description }}
+            </div>
+            <div class="form-row">
+                {{ form.deadline_date.label_tag }} {{ form.deadline_date }}
+            </div>
+        </fieldset>
+
+        <div class="submit-row">
+            <input type="submit" value="Submit"/>
+        </div>
+
+        <script type="text/javascript">document.getElementById('id_name').focus();</script>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+<div id="container">
+    <div class="col-8 col-md-3">
+        <div class="p-2 worklist">
+            <div class="p-2 worklist-title">
+                <form action="." method="post">{% csrf_token %}
+                    {% if form.errors %}
+                    <p class="errornote">Wrong! Please correct the error(s) below.</p>
+                    {% endif %}
+
+                    <p>Create or Update your card</p>
+
+                    <fieldset class="aligned">
+                        <div class="form-row">
+                            {{ form|crispy }}
+                        </div>
+                    </fieldset>
+
+                    <div class="submit-row">
+                        <input type="submit" value="Submit"/>
+                    </div>
+
+                    <script type="text/javascript">document.getElementById('id_name').focus();</script>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
