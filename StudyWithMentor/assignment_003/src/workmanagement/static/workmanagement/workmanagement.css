@@ -2,20 +2,46 @@ div {
     border-radius: 7px;
 }
 
-div.worklist {
-    background-color:#6b808c;
+.worklist {
+    background-color:#dfe1e6;
 }
 
-div.worklist-title {
-    background-color:#6b808c;
+.worklist-title {
+    font-weight:bold;
     margin-bottom: 5%
 }
-
-div.mycard-title {
+.mycard-content {
     background-color:#fff;
     margin-bottom: 4%;
 }
 
-button.see-more {
-    font-weight: bold;
+.mycard-title {
+    background-color:#fff;
+}
+
+.mycard-status {
+    background-color:#fff;
+}
+
+.see-more {
+    font-weight: 400;
+}
+
+.worklist-title:last-child{
+    background-color:#fff;
+    margin-bottom: 2%;
+}
+
+.mycard-title:last-child {
+    font-weight:400;
+    color:#6b778c;
+    background-color:#dfe1e6;
+    margin-bottom: 0%;
+    padding: 0;
+}
+
+.mycard-content:last-child {
+    background-color:#dfe1e6;
+    margin-bottom: 0%;
+    padding: 0;
 }
