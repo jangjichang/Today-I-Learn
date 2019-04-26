@@ -16,12 +16,12 @@ class WorkList(models.Model):
 
 class Card(models.Model):
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=50)
+    description = models.CharField(max_length=50, blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     worklist = models.ForeignKey(WorkList, on_delete=models.CASCADE)
     create_date = models.DateField(auto_now_add=True)
     modify_date = models.DateField(auto_now=True)
-    deadline_date = models.DateField(blank=True, null=True)
+    deadline_date = models.DateField(blank=True)
 
     def __str__(self):
         return self.name
