@@ -13,7 +13,8 @@
 </head>
 <body>
     <div id="header">
-        <h2 class="maintitle">Work Management Program - {{user}}</h2>
+        <h2 class="maintitle"><a class="main-href" href="{% url 'workmanagement:worklist_show' %}">
+            Work Management Program - {{user}}</a></h2>
     </div>
 </div>
     {% block content %} {% endblock %}
