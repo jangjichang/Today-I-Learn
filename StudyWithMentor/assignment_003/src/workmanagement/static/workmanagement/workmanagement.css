@@ -23,10 +23,6 @@ div {
     background-color:#fff;
 }
 
-.see-more {
-    font-weight: 400;
-}
-
 .worklist-title:last-child{
     background-color:#dfe1e6;
     margin-bottom: 2%;
@@ -44,8 +40,4 @@ div {
     background-color:#dfe1e6;
     margin-bottom: 0%;
     padding: 0;
-}
-
-button.see-more {
-    background-color:#F2F2F2;
 }
