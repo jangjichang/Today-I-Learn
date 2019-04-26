@@ -6,19 +6,313 @@
 
 {% block content %}
 <div class="d-flex flex-nowrap">
+    {% if object_list %}
+    <!--object_list가 있으면 worklist 출력 후 마지막에 +Add another worlist 출력-->
+        {% for worklist in object_list %}
+            <div class="col-8 col-md-3">
+                <div class="p-2 worklist">
+                    <div class="p-2 worklist-title">
+                        {{ worklist.name }}
+                        <button type="button" class="btn float-right see-more">...</button>
+                    </div>
+                    {% if worklist.card_set.all %}
+                    <!--worklist에 card가 있으면 card 출력 후 마지막에 +Add another card 출력 -->
+                        {% for card in worklist.card_set.all %}
+                            <div class="p-2 mycard-content">
+                                <div class="p-2 mycard-title">
+                                    {{ card.name }}
+                                </div>
+                                <div class="p-2 mycard-status">
+                                    <i>card status</i>
+                                </div>
+                            </div>
+                            {% if forloop.last %}
+                            <!--card가 있을 때 마지막 card 출력 후 +Add another card 출력-->
+                            <div class="p-2 mycard-content">
+                                <div class="p-2 mycard-title">
+                                    +Add another card
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                    <!--worklist에 card가 없으면 +Add a card 출력-->
+                        <div class="p-2 mycard-content">
+                            <div class="p-2 mycard-title">
+                                +Add a card
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if forloop.last %}
+            <!--object_list가 있을 때 마지막 worklist 출력 후 +Add another worklist 출력-->
+                <div class="col-8 col-md-3">
+                    <div class="p-2 worklist">
+                        <div class="p-2 worklist-title">
+                            +Add another worklist
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+    <!--object_list가 없으면 +Add a worklist 출력-->
     <div class="col-8 col-md-3">
         <div class="p-2 worklist">
             <div class="p-2 worklist-title">
-                <span>Title 1</span>
+                +Add a worklist
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+<div class="d-flex flex-nowrap">
+    <div class="col-8 col-md-3">
+        <div class="p-2 worklist">
+            <div class="p-2 worklist-title">
+                Title 1
                 <button type="button" class="btn float-right see-more">...</button>
             </div>
-            <div class="p-2 mycard-title">
-                <span>Card content</span>
-                <div class="p-2"
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
             </div>
-            <div class="p-2 mycard-title">Card content</div>
-            <div class="p-2 mycard-title">Card content</div>
-            <div class="p-2 mycard-title">Card content</div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8 col-md-3">
+        <div class="p-2 worklist">
+            <div class="p-2 worklist-title">
+                Title 1
+                <button type="button" class="btn float-right see-more">...</button>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8 col-md-3">
+        <div class="p-2 worklist">
+            <div class="p-2 worklist-title">
+                Title 1
+                <button type="button" class="btn float-right see-more">...</button>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8 col-md-3">
+        <div class="p-2 worklist">
+            <div class="p-2 worklist-title">
+                Title 1
+                <button type="button" class="btn float-right see-more">...</button>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8 col-md-3">
+        <div class="p-2 worklist">
+            <div class="p-2 worklist-title">
+                Title 1
+                <button type="button" class="btn float-right see-more">...</button>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8 col-md-3">
+        <div class="p-2 worklist">
+            <div class="p-2 worklist-title">
+                Title 1
+                <button type="button" class="btn float-right see-more">...</button>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
+            <div class="p-2 mycard-content">
+                <div class="p-2 mycard-title">
+                    Card Title
+                </div>
+                <div class="p-2 mycard-status">
+                    Card status
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -28,8 +322,6 @@
 
 
 </div>
-{% endblock %}
-
 
 
 <div id="container">
@@ -40,13 +332,13 @@
             <!--<div class="card mb-4 box-shadow  worklist">-->
             <div>
             <p><b><i>{{ worklist.name }} </i></b>
-            <span><a href="#">edit</a></span>
-            <span><a href="#">delete</a></span></p>
+            <a href="#">edit</a>
+            <a href="#">delete</a></p>
                 {% if worklist.card_set.all %}
                     {% for card in worklist.card_set.all %}
                         <p>{{card.name}}
-                        <span><a href="#">edit</a></span>
-                        <span><a href="#">delete</a></span></p>
+                        <a href="#">edit</a>
+                        <a href="#">delete</a></p>
                         {% if forloop.last %}
                             <p><a href="{% url 'workmanagement:card_add' worklist.id %}">+Add another card</a></p>
                         {% endif %}
