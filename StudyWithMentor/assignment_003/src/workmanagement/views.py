@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 
 from todoapp.views import LoginRequiredMixin
 from .models import WorkList, Card, Activity
+from .forms import CardForm
 
 # Create your views here.
 
@@ -41,7 +42,7 @@ class ListDeleteView(LoginRequiredMixin, DeleteView):
 
 class CardCreateView(LoginRequiredMixin, CreateView):
     model = Card
-    fields = ['name', 'description', 'deadline_date']
+    form_class = CardForm
     success_url = reverse_lazy('workmanagement:worklist_show')
 
     def form_valid(self, form):
@@ -52,7 +53,7 @@ class CardCreateView(LoginRequiredMixin, CreateView):
 
 class CardUpdateView(LoginRequiredMixin, UpdateView):
     model = Card
-    fields = ['name', 'description', 'deadline_date']
+    form_class = CardForm
     success_url = reverse_lazy('workmanagement:worklist_show')
 
 
