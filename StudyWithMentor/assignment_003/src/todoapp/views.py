@@ -5,6 +5,11 @@ from django.urls import reverse_lazy
 # 기능은 사용자가 로그인했는지를 확인해 로그인한 경우는 원래 함수를 실행하고,
 # 로그인이 되지 않은 경우는 로그인 페이지로 리다이렉트시킵니다.
 from django.contrib.auth.decorators import login_required
+from django.views.generic.base import RedirectView
+
+
+class HomeRedirectView(RedirectView):
+    pattern_name = 'workmanagement:index'
 
 
 # login_required()함수는 함수에만 적용할 수 있으므로, 클래스형 뷰에서는
