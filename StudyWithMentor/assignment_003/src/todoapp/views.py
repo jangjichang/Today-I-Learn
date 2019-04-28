@@ -7,9 +7,18 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import RedirectView
 
+from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 
 class HomeRedirectView(RedirectView):
     pattern_name = 'workmanagement:index'
+
+
+# TODO: 나중에 HomeView 만들어서 프로젝트 소개 작성하기
+# class HomeView(TemplateView):
+#     template_name = 'home.html'
 
 
 # login_required()함수는 함수에만 적용할 수 있으므로, 클래스형 뷰에서는
@@ -34,3 +43,10 @@ class LoginRequiredMixin:
     # 만일 클래스에 데코레이터 기능을 적용하려면 약간의 추가 작업을 해야 합니다.
     # 앞에서 설명한 LoginRequiredMixin 클래스를 사용해 상속 방식으로 데코레이터 기능을 적용할 수 있습니다.
     # 그 외에도 URLconf 정의에 데코레이터 함수를 적용하는 방법과 dispatch() 메소드에 데코레이터 함수를 적용하는 방법이 있습니다.
+
+
+# User Creation
+class UserCreateView(CreateView):
+    template_name = 'registration/register.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('register_done')
