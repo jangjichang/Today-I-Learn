@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}register.html{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/forms.css" %}{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div id="content">
+    <h1>New User Registration</h1>
+    <form method="post" action="."> {% csrf_token %}
+
+    {% if form.errors %}
+        <p class="errornote">Wrong! Please correct the error(s) below.</p>
+    {% endif %}
+
+    <p>Please enter your username etc.</p>
+
+        <fieldset class="aligned">
+            {% if form %}
+                <div class="form-row">
+                    {{ form|crispy }}
+                </div>
+            {% else %}
+                <div class="form-row">
+                    회원가입 양식을 제대로 불러오지 못했습니다.
+                </div>
+            {% endif %}
+        </fieldset>
+
+        <div class="submit-row">
+            <input type="submit" value="Register"/>
+        </div>
+
+        <script type="text/javascript">document.getElementById('id_username').focus();
+        </script>
+    </form>
+</div>
+{% endblock %}
