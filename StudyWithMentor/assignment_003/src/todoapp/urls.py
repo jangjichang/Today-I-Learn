@@ -16,9 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from .views import HomeRedirectView
 from django.urls import include, path
+from .views import UserCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # ToDo: Home 화면 만들기
     path('', HomeRedirectView.as_view()),
     path('todo/', include('workmanagement.urls')),
+    # 장고의 인증 URLconf를 가져와서 사용함
+    path('accounts/', include('django.contrib.auth.urls')),
+    # 계정 생성(가입) 처리를 하는 URL
+    path('accounts/register/', UserCreateView.as_view(), name='register'),
+
 ]
