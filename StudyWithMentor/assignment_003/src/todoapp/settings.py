@@ -132,4 +132,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
 
 # LOGIN_URL = '/accounts/login'
 # LOGOUT_URL = '/accounts/logout'
+
+# 로그인 완료 후 next 인자가 지정되면 해당 URL로 이동
+# next 인자가 없으면 아래 URL로 이동
 LOGIN_REDIRECT_URL = '/'
