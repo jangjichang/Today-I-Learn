@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import WorkList, Card, Activity
-
+from django.forms.models import inlineformset_factory
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -14,3 +14,5 @@ class CardForm(ModelForm):
         widgets = {
             'deadline_date': DateInput(),
         }
+
+
