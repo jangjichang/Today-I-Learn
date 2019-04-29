@@ -131,6 +131,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),
                     os.path.join(BASE_DIR, 'workmanagement/static'), ]   # 추가
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'www_dir', 'static')
+
 # LOGIN_URL = '/accounts/login'
 # LOGOUT_URL = '/accounts/logout'
 
