@@ -16,6 +16,11 @@
                             {{ worklist.name }}
                         </div>
                     </a>
+                    <a href="{% url 'workmanagement:worklist_delete' worklist.id %}">
+                        <div>
+                            삭제하기
+                        </div>
+                    </a>
                     {% if worklist.card_set.all %}
                     <!--worklist에 card가 있으면 card 출력 후 마지막에 +Add another card 출력 -->
                         {% for card in worklist.card_set.all %}
@@ -34,6 +39,7 @@
                                         {% endif %}
                                     </div>
                                 </a>
+                                <a href="{% url 'workmanagement:card_delete' worklist.id card.id %}">삭제하기</a>
                             </div>
                             {% if forloop.last %}
                             <!--card가 있을 때 마지막 card 출력 후 +Add another card 출력-->
@@ -75,7 +81,7 @@
     <!--object_list가 없으면 +Add a worklist 출력-->
     <div class="col-8 col-md-3">
         <div class="p-2 worklist">
-            <a href="#">
+            <a href="{% url 'workmanagement:worklist_add' %}">
                 <div class="p-2 worklist-title">
                     +Add a worklist
                 </div>
