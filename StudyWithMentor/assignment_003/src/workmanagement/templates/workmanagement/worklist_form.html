@@ -9,28 +9,28 @@
 
 {% block content %}
 <div id="container">
-    <div class="col-8 col-md-3">
-        <div class="p-2 worklist">
-            <div class="p-2 worklist-title">
-                <form action="." method="post">{% csrf_token %}
-                    {% if form.errors %}
-                    <p class="errornote">Wrong! Please correct the error(s) below.</p>
-                    {% endif %}
+    <div class="row">
+        <div class="col-8 col-md-3">
+            <div class="p-2 worklist">
+                <div class="p-2 worklist-title">
+                    <form action="." method="post">{% csrf_token %}
+                        {% if form.errors %}
+                        <p class="errornote">Wrong! Please correct the error(s) below.</p>
+                        {% endif %}
 
-                    <p>Create or Update your worklist.</p>
+                        <p>Create or Update your worklist.</p>
 
-                    <fieldset class="aligned">
+                        <fieldset class="aligned">
+                            <div class="form-row">
+                                {{ form|crispy }}
+                            </div>
+                        </fieldset>
                         <div class="form-row">
-                            {{ form|crispy }}
+                            <input type="submit" class="btn btn-success" value="Submit"/>
                         </div>
-                    </fieldset>
-
-                    <div class="submit-row">
-                        <input type="submit" value="Submit"/>
-                    </div>
-
-                    <script type="text/javascript">document.getElementById('id_name').focus();</script>
-                </form>
+                        <script type="text/javascript">document.getElementById('id_name').focus();</script>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
