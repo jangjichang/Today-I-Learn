@@ -12,11 +12,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <div id="header">
-        <h2 class="maintitle"><a class="main-href" href="{% url 'workmanagement:worklist_show' %}">
-            Work Management Program - {{user}}</a></h2>
-    </div>
-</div>
+    <nav class="navbar navbar-expand-sm navbar-custom">
+      <!-- Brand -->
+        <a class="navbar-brand" href="{% url 'workmanagement:index' %}"><h1>할 일을 안하면 <br>&nbsp;&nbsp;새로운 우주가 탄생한다.</h1></a>
+        <ul class="navbar-nav">
+        {% if user.is_active %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">로그아웃하고<br>지구로 돌아가기</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'password_change' %}">비밀번호 바꾸기</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">로그인하고<br>우주를 만들어보자</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}">회원가입하고<br>우주를 만들어보자</a>
+          </li>
+        {% endif %}
+        </ul>
+    </nav>
     {% block content %} {% endblock %}
     {% block footer %} {% endblock %}
 </body>
