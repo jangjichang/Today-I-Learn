@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from .views import HomeRedirectView
 from django.urls import include, path
-from .views import UserCreateView
+from .views import UserCreateView, UserCreateDoneTV
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +27,5 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     # 계정 생성(가입) 처리를 하는 URL
     path('accounts/register/', UserCreateView.as_view(), name='register'),
-
+    path('accounts/register/done', UserCreateDoneTV.as_view(), name='register_done'),
 ]
