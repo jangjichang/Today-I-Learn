@@ -24,3 +24,9 @@ def find_duplicate_element(input):
         if input.count(i) >= 2:
             result.append(i)
     return result
+
+
+if __name__ =='__main__':
+    name = ['Tom', 'Jerry', 'Mike', 'Tom']
+    result = duplicate_check(name)
+    print(result)
