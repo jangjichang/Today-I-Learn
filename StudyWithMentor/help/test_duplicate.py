@@ -8,6 +8,11 @@ def test_simple():
 
 
 def duplicate_check(input):
+    """
+    Return duplicate str
+    :param input: string list
+    :return: redundant list of elements
+    """
     if is_not_duplicate(input):
         return []
 
