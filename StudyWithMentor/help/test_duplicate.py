@@ -16,7 +16,7 @@ def duplicate_check(input):
     if is_not_duplicate(input):
         return []
 
-    return(find_duplicate_element(input))
+    return find_duplicate_element(input)
 
 
 def is_not_duplicate(input):
@@ -24,14 +24,10 @@ def is_not_duplicate(input):
 
 
 def find_duplicate_element(input):
-    result = []
-    for i in set(input):
-        if input.count(i) >= 2:
-            result.append(i)
-    return result
+    return [x for x in set(input) if input.count(x) >= 2]
 
 
-if __name__ =='__main__':
+if __name__ == '__main__':
     name = ['Tom', 'Jerry', 'Mike', 'Tom']
     result = duplicate_check(name)
     print(result)
