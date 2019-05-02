@@ -13,6 +13,27 @@
 6. 결과를 확인하고 추가로 배운 점을 적용해 1로 돌아가서 다듬습니다.
 
 ---
+
+# 1. 기능명세
+- ToDoList 작성
+    - 할 일을 worklist에 저장
+    - 할 일에 대한 세부 항목은 card에 저장
+![todolistdeploy](../../image/todolistdeploy.png)
+    
+- 인증
+    - 로그인, 로그아웃, 회원가입, 비밀번호 변경
+
+# 2. 개선사항
+- 전체적인 디자인
+    - 트렐로를 따라하려다가 너무 디자인이 너무 아쉽게 나왔다.
+    - 차라리 부트스트랩에 이미 있는걸 갖다 쓰는게 낫겠다.
+    [여기링크](https://www.jquery-az.com/6-templates-bootstrap-4-cards-online-examples/)에서 
+    Using list group inside a card template 따라하기
+- worklist 수정 화면 접속 시 inlineformset으로 card 보여주기
+- card 수정 화면 접속 시 inlineformset으로 activity 보여주기
+- 도메인 이름 바꾸기
+
+---
 # 1. 애플리케이션 설계하기
 - To Do List 앱을 만든다. To Do List 앱은 할 일을 시각화해 관리하고 최대 5개의 카테고리에 대해 세부 사항을 등록하고 이를 시각화한다.
 - To Do List 앱에 필요한 테이블은, 할 일을 저장하는 card 테이블과 이 card들을 그룹화해 그 정보를 담을 수 있는 list 테이블과 
