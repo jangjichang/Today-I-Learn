@@ -4,6 +4,7 @@ from django.urls import reverse
 
 # Create your models here.
 
+
 class WorkList(models.Model):
     name = models.CharField(max_length=50)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
