@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block title %}
+home
+{% endblock %}
+
+{% block jumbo %}
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">할 일 을<br>안 하 면<br>새 로 운<br>우 주 가<br>탄 생 한 다</h1>
+      <!--<p class="lead text-muted"></p>-->
+      <hr class="my-4">
+      <p>1. 원하는 대로 보드를 만들고 이름을 지정해주세요.</p>
+      <p>2. 보드에 할 일을 추가하세요.</p>
+      <p>3. 원하는대로 보드를 이동하면서 관리하세요.</p>
+      <p>
+        {% if user.is_authenticated %}
+          <a href="#" class="btn btn-primary my-2">로그아웃</a>
+          <a href="#" class="btn btn-secondary my-2">비밀번호 바꾸기</a>
+          <a href="#" class="btn btn-danger my-2">내 목록 확인하기</a>
+        {% else %}
+          <a href="#" class="btn btn-primary my-2">회원가입</a>
+          <a href="#" class="btn btn-secondary my-2">로그인</a>
+        {% endif %}
+      </p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-4">
+  <div class="card mb-4 box-shadow">
+    <div class="card-body">
+      <h5 class="card-title">할 일</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">탤런트 코드 50p까지 읽기</li>
+        <li class="list-group-item">맛집 예약하기</li>
+    </ul>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="card-body">
+          <a href="#" class="card-link">자세히 보기</a>
+          <a href="#" class="card-link">수정하기</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card mb-4 box-shadow">
+    <div class="card-body">
+      <h5 class="card-title">진행중인 일</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">여행 계획 세우기</li>
+    </ul>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="card-body">
+          <a href="#" class="card-link">자세히 보기</a>
+          <a href="#" class="card-link">수정하기</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card mb-4 box-shadow">
+    <div class="card-body">
+      <h5 class="card-title">끝난 일</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">미용실 예약하기</li>
+    </ul>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="card-body">
+          <a href="#" class="card-link">자세히 보기</a>
+          <a href="#" class="card-link">수정하기</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card mb-4 box-shadow">
+    <div class="card-body">
+      <h5 class="card-title">사이드 프로젝트</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">도메인 등록하기</li>
+      <li class="list-group-item">aws s3 액세스 설정하기</li>
+      <li class="list-group-item">github repository 생성하기</li>
+      <li class="list-group-item">일요일 마포에서 회의</li>
+    </ul>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="card-body">
+          <a href="#" class="card-link">자세히 보기</a>
+          <a href="#" class="card-link">수정하기</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card mb-4 box-shadow">
+    <div class="card-body">
+      <h5 class="card-title">Django 공부하기</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Django 실전편 15장 공부하기</li>
+      <li class="list-group-item">배프의 오지랖 파이썬 웹 프로그래밍 1장 공부하기</li>
+      <li class="list-group-item">To Do List 앱 만들기</li>
+    </ul>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="card-body">
+          <a href="#" class="card-link">자세히 보기</a>
+          <a href="#" class="card-link">수정하기</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card mb-4 box-shadow">
+    <div class="card-body">
+      <h5 class="card-title">1년에 12권 책 읽기</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">1월 - 프로그래머의 길, 멘토에게 묻다.</li>
+      <li class="list-group-item">2월 - 어떻게 살 것인가?</li>
+      <li class="list-group-item">3월 - 탤런트 코드</li>
+      <li class="list-group-item">4월 - 파이썬 웹 프로그래밍 실전편</li>
+      <li class="list-group-item">5월 - 1만 시간의 재발견</li>
+    </ul>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="card-body">
+          <a href="#" class="card-link">자세히 보기</a>
+          <a href="#" class="card-link">수정하기</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card mb-4 box-shadow">
+    <div class="card-body">
+      <h5 class="card-title">멘토링 프로젝트</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">4월 오프라인 모임 발표 준비하기</li>
+      <li class="list-group-item">To Do List 앱 만들기</li>
+      <li class="list-group-item">현금 영수증 신청하기</li>
+    </ul>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="card-body">
+          <a href="#" class="card-link">자세히 보기</a>
+          <a href="#" class="card-link">수정하기</a>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
