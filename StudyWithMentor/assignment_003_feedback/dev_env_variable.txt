@@ -1,0 +1,2 @@
+dev_debug = True
+dev_allowed_host = 127.0.0.1
