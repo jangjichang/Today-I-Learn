@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}work_list{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <!--object_list가 있으면 work 출력 후 마지막에 +Add another work 출력-->
+    {% if object_list %}
+        {% for work in object_list %}
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'todolist:work_update' work.id %}">{{ work.name }}</a></h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% if work.card_set.all %}
+                            <!--work에 card가 있으면 card 출력 후 마지막에 +Add another card 출력 -->
+                            {% for card in work.card_set.all %}
+                                <li class="list-group-item"><a href="{% url 'todolist:card_update' work.id card.id %}">{{ card.name }}</a></li>
+                                {% if forloop.last %}
+                                <!--card가 있을 때 마지막 card 출력 후 +Add another card 출력-->
+                                <li class="list-group-item"><a href="{% url 'todolist:card_add' work.id %}">+할 일 카드 추가하기</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <!--work에 card가 없으면 +Add a card 출력-->
+                            <li class="list-group-item"><a href="{% url 'todolist:card_add' work.id %}">+할 일 카드 추가하기</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            {% if forloop.last %}
+            <!--object_list가 있을 때 마지막 work 출력 후 +Add another work 출력-->
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{% url 'todolist:work_add' %}">+새로운 목록 추가하기</a></h5>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+    <!--object_list가 없으면 +Add a work 출력-->
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'todolist:work_add' %}">+새로운 목록 추가하기</a></h5>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
