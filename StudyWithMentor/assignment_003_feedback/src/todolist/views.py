@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
 
 from mysite.views import LoginRequiredMixin
 from .models import Work, Card, Activity
-from .forms import CardForm
+from .forms import CardForm, CardInlineFormSet
 
 # Create your views here.
 
@@ -22,9 +22,29 @@ class WorkCreateView(LoginRequiredMixin, CreateView):
     fields = ['name']
     success_url = reverse_lazy('todolist:index')
 
+    def get_context_data(self, **kwargs):
+        context = super(WorkCreateView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['formset'] = CardInlineFormSet(self.request.POST)
+        else:
+            context['formset'] = CardInlineFormSet()
+        return context
+
+    # form은 work, formset은 card
     def form_valid(self, form):
         form.instance.owner = self.request.user
-        return super(WorkCreateView, self).form_valid(form)
+        context = self.get_context_data()
+        formset = context['formset']
+        for cardform in formset:
+            cardform.instance.owner = self.request.user
+        if formset.is_valid():
+            self.object = form.save()
+            formset.instance = self.object
+            formset.save()
+            return redirect('todolist:index')
+            return super(WorkCreateView, self).form_valid(form)
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
 
 
 class WorkUpdateView(LoginRequiredMixin, UpdateView):
