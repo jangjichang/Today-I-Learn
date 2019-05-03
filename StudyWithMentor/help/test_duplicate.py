@@ -4,10 +4,10 @@ output = ['Tom']
 
 
 def test_simple():
-    assert output == duplicate_check(input)
+    assert output == duplicate_list(input)
 
 
-def duplicate_check(input):
+def duplicate_list(input):
     """
     Return duplicate str
     :param input: string list
@@ -24,10 +24,20 @@ def is_not_duplicate(input):
 
 
 def find_duplicate_element(input):
-    return [x for x in set(input) if input.count(x) >= 2]
+    input_dict = dict()
+    result = list()
+    for i in input:
+        if i in input_dict:
+            input_dict[i] += 1
+            if input_dict[i] >= 2:
+                if not i in result:
+                    result.append(i)
+        else:
+            input_dict[i] = 1
+    return result
 
 
 if __name__ == '__main__':
     name = ['Tom', 'Jerry', 'Mike', 'Tom']
-    result = duplicate_check(name)
+    result = duplicate_list(name)
     print(result)
