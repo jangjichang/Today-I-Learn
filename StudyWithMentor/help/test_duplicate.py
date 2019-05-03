@@ -26,15 +26,17 @@ def is_not_duplicate(input):
 def find_duplicate_element(input):
     input_dict = dict()
     result = list()
+
     for i in input:
-        if i in input_dict:
-            input_dict[i] += 1
-            if input_dict[i] >= 2:
-                if not i in result:
-                    result.append(i)
-        else:
-            input_dict[i] = 1
-    return result
+        add_to_dict(input_dict, result, i)
+
+
+def add_to_dict(input, result, x):
+    if not input.get(x):
+       input[x] = 0
+    input[x] += 1
+    if input.counter(x) >= 2 and x not in result:
+        result.append(x)
 
 
 if __name__ == '__main__':
