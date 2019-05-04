@@ -1,4 +1,5 @@
 import pytest
+
 input = ['Tom', 'Jerry', 'Mike', 'Tom']
 output = ['Tom']
 
@@ -24,22 +25,33 @@ def is_not_duplicate(input):
 
 
 def find_duplicate_element(input):
-    input_dict = dict()
-    result = list()
+    counter_dict = dict()
+    duplicate_list = list()
+    for key in input:
+        counter_dict = update_counter_dict(counter_dict, key)
+        duplicate_list = update_duplicate_list(counter_dict, duplicate_list, key)
+    return duplicate_list
 
-    for i in input:
-        add_to_dict(input_dict, result, i)
+
+def update_counter_dict(counter_dict, key):
+    """
+    :param counter_dict: 사전 자료 구조의 파라미터, key- 단어, value- 단어 빈도수
+    :param key: list 반복인 원소 중 하나
+    :return: 단어의 빈도수를 담고 있는 사전 자료 구조 변수, dict
+    """
+    if not counter_dict.get(key):
+        counter_dict[key] = 0
+    counter_dict[key] += 1
+    return counter_dict
 
 
-def add_to_dict(input, result, x):
-    if not input.get(x):
-       input[x] = 0
-    input[x] += 1
-    if input.counter(x) >= 2 and x not in result:
-        result.append(x)
+def update_duplicate_list(counter_dict, duplicate_list, key):
+    if counter_dict[key] >= 2 and key not in duplicate_list:
+        duplicate_list.append(key)
+    return duplicate_list
 
 
 if __name__ == '__main__':
     name = ['Tom', 'Jerry', 'Mike', 'Tom']
-    result = duplicate_list(name)
-    print(result)
+    duplicate_list = find_duplicate_element(name)
+    print(duplicate_list)
