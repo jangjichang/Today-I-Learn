@@ -11,7 +11,6 @@ def test_simple():
 def duplicate_list(input):
     if is_not_duplicate(input):
         return []
-
     return find_duplicate_element(input)
 
 
@@ -21,11 +20,11 @@ def is_not_duplicate(input):
 
 def find_duplicate_element(input):
     counter_dict = dict()
-    duplicate_list = list()
+    counter_list = list()
     for key in input:
         counter_dict = update_counter_dict(counter_dict, key)
-        duplicate_list = update_duplicate_list(counter_dict, duplicate_list, key)
-    return duplicate_list
+        counter_list = update_duplicate_list(counter_dict, counter_list, key)
+    return counter_list
 
 
 def update_counter_dict(counter_dict, key):
@@ -35,13 +34,13 @@ def update_counter_dict(counter_dict, key):
     return counter_dict
 
 
-def update_duplicate_list(counter_dict, duplicate_list, key):
-    if counter_dict[key] >= 2 and key not in duplicate_list:
-        duplicate_list.append(key)
-    return duplicate_list
+def update_duplicate_list(counter_dict, counter_list, key):
+    if counter_dict[key] >= 2 and key not in counter_list:
+        counter_list.append(key)
+    return counter_list
 
 
 if __name__ == '__main__':
     name = ['Tom', 'Jerry', 'Mike', 'Tom']
-    duplicate_list = find_duplicate_element(name)
-    print(duplicate_list)
+    counter_list = find_duplicate_element(name)
+    print(counter_list)
