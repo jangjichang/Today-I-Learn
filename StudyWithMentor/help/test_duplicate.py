@@ -9,11 +9,6 @@ def test_simple():
 
 
 def duplicate_list(input):
-    """
-    Return duplicate str
-    :param input: string list
-    :return: redundant list of elements
-    """
     if is_not_duplicate(input):
         return []
 
@@ -34,11 +29,6 @@ def find_duplicate_element(input):
 
 
 def update_counter_dict(counter_dict, key):
-    """
-    :param counter_dict: 사전 자료 구조의 파라미터, key- 단어, value- 단어 빈도수
-    :param key: list 반복인 원소 중 하나
-    :return: 단어의 빈도수를 담고 있는 사전 자료 구조 변수, dict
-    """
     if not counter_dict.get(key):
         counter_dict[key] = 0
     counter_dict[key] += 1
