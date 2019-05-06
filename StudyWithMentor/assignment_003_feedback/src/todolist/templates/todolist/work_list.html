@@ -4,10 +4,11 @@
 {% load staticfiles %}
 
 {% block content %}
+<div class="row">
     <!--object_list가 있으면 work 출력 후 마지막에 +Add another work 출력-->
     {% if object_list %}
         {% for work in object_list %}
-            <div class="col-md-4">
+            <div class="col-4">
                 <div class="card mb-4 box-shadow">
                     <div class="card-body">
                         <h5 class="card-title"><a href="{% url 'todolist:work_update' work.id %}">{{ work.name }}</a></h5>
@@ -31,7 +32,7 @@
             </div>
             {% if forloop.last %}
             <!--object_list가 있을 때 마지막 work 출력 후 +Add another work 출력-->
-                <div class="col-md-4">
+                <div class="col-4">
                     <div class="card mb-4 box-shadow">
                         <div class="card-body">
                             <h5 class="card-title"><a href="{% url 'todolist:work_add' %}">+새로운 목록 추가하기</a></h5>
@@ -42,7 +43,7 @@
         {% endfor %}
     {% else %}
     <!--object_list가 없으면 +Add a work 출력-->
-        <div class="col-md-4">
+        <div class="col-4">
             <div class="card mb-4 box-shadow">
                 <div class="card-body">
                     <h5 class="card-title"><a href="{% url 'todolist:work_add' %}">+새로운 목록 추가하기</a></h5>
@@ -50,4 +51,5 @@
             </div>
         </div>
     {% endif %}
+</div>
 {% endblock %}
