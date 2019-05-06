@@ -11,10 +11,15 @@ class DateInput(forms.DateInput):
 class CardForm(ModelForm):
     class Meta:
         model = Card
-        fields = ['name', 'description', 'deadline', ]
+        fields = ['name', 'description', 'deadline']
         widgets = {
             'deadline': DateInput(),
         }
 
 
-CardInlineFormSet = inlineformset_factory(Work, Card, form=CardForm, extra=3)
+CardInlineFormSet = inlineformset_factory(
+                        Work,
+                        Card,
+                        form=CardForm,
+                        can_delete=False,
+                        extra=1)
