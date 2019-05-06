@@ -6,43 +6,46 @@
 
 {% load crispy_forms_tags %}
 
+
 {% block content %}
-
-<div class="col-md-4">
-    <form action="." method="post">{% csrf_token %}
-    <div class="card mb-4 box-shadow">
-
-            <div class="card-body">
-                <h5 class="card-title">목록을 생성하거나 추가하세요.</h5>
+<form action="." method="post">{% csrf_token %}
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <h5 class="card-title">목록을 생성하거나 추가하세요.</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {{ form|crispy }}
+                    <input type="submit" class="btn btn-primary" value="저장하기"/>
+                    {% if object %}
+                    <a class="btn btn-danger" href="{% url 'todolist:work_delete' object.id %}">삭제하기</a>
+                    {% endif %}
+                </ul>
             </div>
-            <ul class="list-group list-group-flush">
-                {{ form|crispy }}
-                <input type="submit" class="btn btn-primary" value="저장하기"/>
-                {% if object %}
-                <a class="btn btn-danger" href="{% url 'todolist:work_delete' object.id %}">삭제하기</a>
-                {% endif %}
-            </ul>
-
-    </div>
-</div>
-
-{{ formset.management_form }}
-{% for form in formset %}
-    {{ form.id }}
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-            <div class="card-body">
-                <h5 class="card-title">할 일을 생성하거나 추가하세요.</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                {{ form|crispy }}
-                {% if object %}
-                <a class="btn btn-danger" href="{% url 'todolist:work_delete' object.id %}">삭제하기</a>
-                {% endif %}
-            </ul>
         </div>
-    </div>
-{% endfor %}
 
+        {{ formset.management_form }}
+        {% for form in formset %}
+            {{ form.id }}
+            <div class="col-md-4 col-sm-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">할 일을 생성하거나 추가하세요.</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {{ form|crispy }}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+        <button id="btn1">Append list items</button>
+    </div>
+    <script>
+        $(document).ready(function(){
+          $("#btn1").click(function(){
+            $("div").prepend(" <b>Appended text</b>.");
+          });
+    </script>
 </form>
 {% endblock %}
