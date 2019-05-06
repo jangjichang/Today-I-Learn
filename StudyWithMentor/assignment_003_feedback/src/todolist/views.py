@@ -19,7 +19,7 @@ class WorkCardLV(LoginRequiredMixin, ListView):
 
 class WorkCreateView(LoginRequiredMixin, CreateView):
     model = Work
-    fields = ['name']
+    fields = ['name',]
     success_url = reverse_lazy('todolist:index')
 
     def get_context_data(self, **kwargs):
@@ -42,15 +42,36 @@ class WorkCreateView(LoginRequiredMixin, CreateView):
             formset.instance = self.object
             formset.save()
             return redirect('todolist:index')
-            return super(WorkCreateView, self).form_valid(form)
         else:
             return self.render_to_response(self.get_context_data(form=form))
 
 
 class WorkUpdateView(LoginRequiredMixin, UpdateView):
     model = Work
-    fields = ['name']
+    fields = ['name', ]
     success_url = reverse_lazy('todolist:index')
+
+    def get_context_data(self, **kwargs):
+        context = super(WorkUpdateView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['formset'] = CardInlineFormSet(self.request.POST, instance=self.object)
+        else:
+            context['formset'] = CardInlineFormSet(instance=self.object)
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        formset = context['formset']
+        for cardform in formset:
+            cardform.instance.owner = self.request.user
+            cardform.instance.work = Work.objects.get(id=self.kwargs['pk'])
+        if formset.is_valid():
+            self.object = form.save()
+            formset.instance = self.object
+            formset.save()
+            return redirect('todolist:index')
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
 
 
 class WorkDeleteView(LoginRequiredMixin, DeleteView):
