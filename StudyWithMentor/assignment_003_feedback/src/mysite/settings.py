@@ -26,9 +26,9 @@ SECRET_KEY = '@n+o9u5hgch=&dl00a(usn(o(2r*pihjtk*t+lmqk#7#!&bl4('
 DEBUG = True
 # os.environ.get('dev_debug')
 
-ALLOWED_HOSTS = []
-# os.environ.get('dev_allowed_host')
 
+ALLOWED_HOSTS = []
+# os.environ.get('dev_debug')
 
 # Application definition
 
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
     }
 }
 
@@ -131,5 +131,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # LOGOUT_URL = '/accounts/logout/'
 LOGIN_REDIRECT_URL = '/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'www_dir', 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]   # 추가
