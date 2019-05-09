@@ -23,7 +23,8 @@
       <!--<label for="id_username">Username:</label>-->
       <!--<input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">-->
       {% if form.errors %}
-        <p> {{ form.errors }} </p>
+        <p> {{ form.username.errors }} </p>
+        <p> {{ form.password.errors }} </p>
       {% endif %}
       <label class="sr-only" for="{{ form.username.id_for_label }}">Username:</label>
       <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}" class="form-control" placeholder="아이디" required autofocus>
