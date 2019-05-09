@@ -6,10 +6,10 @@
     <div class="card mb-4 box-shadow">
         <form action="." method="post">{% csrf_token %}
             <div class="card-body">
-                <h5 class="card-title">"{{ object }}"를 삭제하겠습니까?</h5>
+                <h5 class="card-title">"{{ object }}"를 완료/삭제하겠습니까?</h5>
             </div>
             <ul class="list-group list-group-flush">
-                <input type="submit" class="btn btn-danger" value="삭제하기"/>
+                <input type="submit" class="btn btn-danger" value="완료/삭제하기"/>
             </ul>
         </form>
     </div>
