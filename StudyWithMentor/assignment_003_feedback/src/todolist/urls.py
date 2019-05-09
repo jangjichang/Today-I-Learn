@@ -13,6 +13,7 @@ urlpatterns = [
     path('card/<int:fk>/add/', CardCreateView.as_view(), name='card_add'),
     path('card/<int:fk>/<int:pk>/update/', CardUpdateView.as_view(), name='card_update'),
     path('card/<int:fk>/<int:pk>/delete/', CardDeleteView.as_view(), name='card_delete'),
+    path('card/<int:fk>/<int:pk>/complete/', CardCompleteView.as_view(), name='card_complete'),
     # ToDo: Activity url settings
     # path('activity/<int:fk>/add/', ActivityCreateView.as_view(), name='card_add'),
     # path('activity/<int:fk>/<int:pk>/update/', ActivityUpdateView.as_view(), name='card_update'),
