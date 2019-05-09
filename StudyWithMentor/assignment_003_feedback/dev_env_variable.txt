@@ -1,2 +1,13 @@
 dev_debug = True
 dev_allowed_host = 127.0.0.1
+dev_secret_key = @n+o9u5hgch=&dl00a(usn(o(2r*pihjtk*t+lmqk#7#!&bl4(
+
+윈도우에서 환경 변수 설정
+
+SETX {{변수명}} {{변수값}}
+설정 후 레지스트리로부터 값을 읽어와야하므로 터미널 재실행하여 확인함
+링크: https://zetawiki.com/wiki/%EC%9C%88%EB%8F%84%EC%9A%B0_setx
+echo %{{변수명}}%
+
+git 특정 폴더만 내려받기
+링크: https://wallyp.tistory.com/21
