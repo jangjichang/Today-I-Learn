@@ -11,13 +11,23 @@
             <div class="col-md-4 col-sm-4">
                 <div class="card mb-4 box-shadow">
                     <div class="card-body">
-                        <h5 class="card-title"><a href="{% url 'todolist:work_update' work.id %}">{{ work.name }}</a></h5>
+                        <h5 class="card-title"><a class="text-dark" href="{% url 'todolist:work_update' work.id %}">{{ work.name }}</a></h5>
                     </div>
                     <ul class="list-group list-group-flush">
                         {% if work.card_set.all %}
                             <!--work에 card가 있으면 card 출력 후 마지막에 +Add another card 출력 -->
                             {% for card in work.card_set.all %}
-                                <li class="list-group-item"><a href="{% url 'todolist:card_update' work.id card.id %}">{{ card.name }}</a></li>
+                                <a class="text-dark" href="{% url 'todolist:card_update' work.id card.id %}">
+                                <li class="list-group-item"><p>{{ card.name }}</p></a>
+                                    {% if card.description %}
+                                    <button type="button" class="btn btn-info"><a class="text-white" href="{% url 'todolist:card_update' work.id card.id %}">설명</a></button>
+                                    {% endif %}
+                                    {% if card.deadline %}
+                                        <button type="button" class="btn btn-warning"><a class="text-white" href="{% url 'todolist:card_update' work.id card.id %}">
+                                            {{ card.deadline|date:"M j"}}일</a></button>
+                                    {% endif %}
+                                    <button type="button" class="btn btn-danger"><a class="text-white" href="{% url 'todolist:card_delete' work.id card.id %}">완료/삭제하기</a></button>
+                                </li>
                                 {% if forloop.last %}
                                 <!--card가 있을 때 마지막 card 출력 후 +Add another card 출력-->
                                 <li class="list-group-item"><a href="{% url 'todolist:card_add' work.id %}">+할 일 카드 추가하기</a></li>
