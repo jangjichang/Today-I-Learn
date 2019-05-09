@@ -2,6 +2,7 @@ from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 
 from mysite.views import LoginRequiredMixin
 from .models import Work, Card, Activity
@@ -79,6 +80,17 @@ class WorkDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('todolist:index')
 
 
+class WorkCompleteView(LoginRequiredMixin, DeleteView):
+    model = Work
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        object.owner.score += 1
+        success_url = reverse_lazy('todolist:index')
+        self.object.delete()
+        return HttpResponseRedirect(success_url)
+
+
 class CardCreateView(LoginRequiredMixin, CreateView):
     model = Card
     form_class = CardForm
@@ -99,6 +111,10 @@ class CardUpdateView(LoginRequiredMixin, UpdateView):
 class CardDeleteView(LoginRequiredMixin, DeleteView):
     model = Card
     success_url = reverse_lazy('todolist:index')
+
+
+class CardCompleteView(LoginRequiredMixin, DeleteView):
+    pass
 
 # ToDo: Activity 기능 추가하기
 # class ActivityCreateView(LoginRequiredMixin, CreateView):
