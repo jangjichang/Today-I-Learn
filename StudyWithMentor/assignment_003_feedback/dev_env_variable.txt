@@ -1,6 +1,11 @@
-dev_debug = True
-dev_allowed_host = 127.0.0.1
-dev_secret_key = @n+o9u5hgch=&dl00a(usn(o(2r*pihjtk*t+lmqk#7#!&bl4(
+개발 환경과 배포 환경의 소스 코드 일치 시키기
+https://12factor.net/ko/config
+- 설정을 소스 코드에서 엄격하게 분리하는 것을 요구한다.
+- 환경 변수를 이용해 개발, 배포 환경을 구분하고 값을 설정한다.
+ex) 'now_env'라는 환경 변수의 값으로 현재 환경을 파악하고
+    환경에 따라 local_settings.py, deploy_settings.py를 로드한다.
+    위 파일에서 정의된 변수 값으로 settings.py에서 설정한다.
+
 
 윈도우에서 환경 변수 설정
 
