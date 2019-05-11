@@ -13,9 +13,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 try:
     if os.environ.get("now_env") == 'dev':
-        from .local_settings import *
-    else:
         from .dev_settings import *
+    else:
+        from .deploy_settings import *
 except ImportError as e:
     print(e)
 
