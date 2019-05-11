@@ -24,7 +24,7 @@ except ImportError as e:
 SECRET_KEY = secret_key
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = debug
-ALLOWED_HOSTS = [allowed_host]
+ALLOWED_HOSTS = allowed_host
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
