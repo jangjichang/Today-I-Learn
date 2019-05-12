@@ -53,4 +53,8 @@ class PageNotFound(TemplateView):
 
 
 class ServerErrorPage(TemplateView):
-    pass
+    template_name = 'error/server_error_page.html'
+
+    def render_to_response(self, context, **response_kwargs):
+        response_kwargs['status'] = 500
+        return super(TemplateView, self).render_to_response(context, **response_kwargs)
