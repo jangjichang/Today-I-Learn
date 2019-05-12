@@ -23,7 +23,7 @@ except ImportError as e:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secret_key
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = debug
+DEBUG = False
 ALLOWED_HOSTS = allowed_host
 
 
@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug': DEBUG  # 템플릿 디버그 추가
         },
     },
 ]
