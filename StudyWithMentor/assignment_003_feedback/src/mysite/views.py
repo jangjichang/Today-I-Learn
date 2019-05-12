@@ -42,3 +42,15 @@ class UserCreateView(CreateView):
 
 class UserCreateDoneTV(TemplateView):
     template_name = 'registration/register_done.html'
+
+
+class PageNotFound(TemplateView):
+    template_name = 'error/page_not_found.html'
+
+    def render_to_response(self, context, **response_kwargs):
+        response_kwargs['status'] = 404
+        return super(TemplateView, self).render_to_response(context, **response_kwargs)
+
+
+class ServerErrorPage(TemplateView):
+    pass
