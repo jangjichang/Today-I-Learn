@@ -124,3 +124,6 @@ dmypy.json
 
 # staticfiles
 /www_dir
+
+# migrations
+/migrations
