@@ -6,10 +6,13 @@ key가 가장 큰 value들을 가장 작은 key의 길이로 split하고, 그 �
 
 배열의
 이를 배열의 처음부터 순회하면서 진행한다.
+
+1. 배열을 원소의 길이를 기준으로 정렬한다.
+2. n번째 원소를 기준으로 그 원소의 길이 만큼에 해당하는 값을 배열에 넣는다.
+3. 이 배열에 n번째 원소가 있으면 return False
+4. 이를 n+1 번째 부터 마지막 원소 까지 비교한다.
+5. 반복문을 종료하고 return True
 """
-
-from collections import Counter
-
 phone_book = [["119", "97674223", "1195524421"],
               ["123", "456", "789"],
               ["12", "123", "1235", "567", "88"]]
@@ -20,13 +23,30 @@ result = [False,
 
 
 def test_simple():
+    # assert sol() == result
     for index, value in enumerate(phone_book):
-        assert solution(value) == result[index]
+        assert sol(value) == result[index]
 
-def solution(pb):
-    # c = [i[0] for i in pb]
-    # c = Counter(c)
-    # for key, value in c.items():
-    #     if c[key] >= 2:
-    #         return False
-    # return True
+
+def sol(pb=["119", "97674223", "1195524421"]):
+    ans = list()
+    pb = sorted(pb, key=lambda x: len(x))
+    for index, value in enumerate(pb):
+        prefix_check(pb, index, ans)
+    if False in ans:
+        return False
+    return True
+
+
+def prefix_check(pb, index, ans):
+    for sub_value in pb[index+1:]:
+        is_value_same(sub_value[:len(pb[index])], pb[index], ans)
+
+
+def is_value_same(pivot, value, ans):
+    if pivot == value:
+        ans.append(False)
+
+
+if __name__ == '__main__':
+    sol()
