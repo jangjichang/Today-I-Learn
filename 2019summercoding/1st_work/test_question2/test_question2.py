@@ -1,7 +1,7 @@
 """
 
 """
-import pytest
+# import pytest
 
 
 def test_simple():
@@ -14,14 +14,17 @@ def test_simple():
 def pair_make(output, open, close, pairs, answer):
     if open == pairs and close == pairs:
         answer.append(output)
-    else:
-        if open < pairs:
-            pair_make(output+'(', open+1, close, pairs, answer)
-        if close < open:
-            pair_make(output+')', open, close+1, pairs, answer)
+    if open < pairs:
+        pair_make(output+'(', open+1, close, pairs, answer)
+    if close < open:
+        pair_make(output+')', open, close+1, pairs, answer)
 
 
 def solution(N):
     answer = list()
     pair_make('', 0, 0, N, answer)
     return sorted(answer)
+
+
+if __name__ == '__main__':
+    solution(3)
