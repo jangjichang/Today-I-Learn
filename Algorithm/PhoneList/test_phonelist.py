@@ -28,7 +28,7 @@ def test_simple():
         assert sol(value) == result[index]
 
 
-def sol(pb=["119", "97674223", "1195524421"]):
+def sol(pb):
     ans = list()
     pb = sorted(pb, key=lambda x: len(x))
     for index, value in enumerate(pb):
@@ -49,4 +49,4 @@ def is_value_same(pivot, value, ans):
 
 
 if __name__ == '__main__':
-    sol()
+    sol(["119", "97674223", "1195524421"])

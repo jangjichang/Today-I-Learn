@@ -19,3 +19,9 @@ def sol(pb):
             if values.startswith(value):
                 return False
     return True
+
+def value_check(value, pb):
+    for values in pb:
+        if values.startswith(value):
+            return False
+
