@@ -18,20 +18,20 @@ def test_simple():
 
 def solution(nums):
     output = nums[0]
-    answer = nums[0]
+    max = nums[0]
     dp = nums[:1]
     for idx, value in enumerate(nums[1:]):
         if value > dp[idx] + value:
             dp.append(value)
             output = value
-            if output > answer:
-                answer = output
+            if output > max:
+                max = output
         else:
             dp.append(dp[idx]+value)
             output = dp[idx]+value
-            if output > answer:
-                answer = output
-    return answer
+            if output > max:
+                max = output
+    return max
         
 
 if __name__ == "__main__":
