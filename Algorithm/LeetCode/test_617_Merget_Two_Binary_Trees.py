@@ -24,11 +24,13 @@ def test_simple():
     output.left.right = TreeNode(4)
     output.right.right = TreeNode(7)
 
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
+
 
 class Solution:
     def mergeTrees(self, t1: TreeNode, t2: TreeNode) -> TreeNode:
@@ -39,7 +41,6 @@ class Solution:
             return t1
         else:
             return t1 or t2
-        
 
 
 if __name__ == "__main__":
@@ -56,7 +57,6 @@ if __name__ == "__main__":
 
     s = Solution()
     a = s.mergeTrees(tree1, tree2)
-
 
     # output = TreeNode(3)
     # output.left = TreeNode(4)
