@@ -11,11 +11,19 @@ def solution(nums, target):
     """
     시간 복잡도: O(n^2)
     """
+    # for idx, value in enumerate(nums):
+    #     for nextidx, nextvalue in enumerate(nums):
+    #         if value + nextvalue == target:
+    #             if idx != nextidx:
+    #                 return [idx, nextidx]
+
+    """
+    시간 복잡도: O(n^2)
+    """
     for idx, value in enumerate(nums):
-        for nextidx, nextvalue in enumerate(nums):
-            if value + nextvalue == target:
-                if idx != nextidx:
-                    return [idx, nextidx]
+        if target-value in nums:
+            if idx != nums.index(target-value):
+                return [idx, nums.index(target-value)]
 
 
 # class Solution:
